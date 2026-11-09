@@ -1,0 +1,1109 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MMD 307 Pixel Quest | شرح وحل Multimedia Programming</title>
+<meta name="description" content="شرح وحل مادة Multimedia Programming (MMD 307) بالعربي والمصطلحات إنجليزي: محاضرات 2 لـ 6، كويز تدريبي على كل محاضرة، كويز شامل، وامتحان ميد تجريبي محلول.">
+<meta name="author" content="Ahmed Salman">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#05070d">
+<link rel="canonical" href="https://mmd307.uniskills.pro/">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="author" href="https://dev.uniskills.pro/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MMD 307 Pixel Quest">
+<meta property="og:locale" content="ar_EG">
+<meta property="og:title" content="MMD 307 Pixel Quest | شرح وحل Multimedia Programming">
+<meta property="og:description" content="شرح وحل مادة Multimedia Programming (MMD 307) بالعربي والمصطلحات إنجليزي: محاضرات 2 لـ 6، كويز تدريبي على كل محاضرة، كويز شامل، وامتحان ميد تجريبي محلول.">
+<meta property="og:url" content="https://mmd307.uniskills.pro/">
+<meta property="og:image" content="https://mmd307.uniskills.pro/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="MMD 307 Pixel Quest - pixel character and title">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MMD 307 Pixel Quest | شرح وحل Multimedia Programming">
+<meta name="twitter:description" content="شرح وحل مادة Multimedia Programming (MMD 307) بالعربي والمصطلحات إنجليزي: محاضرات 2 لـ 6، كويز تدريبي على كل محاضرة، كويز شامل، وامتحان ميد تجريبي محلول.">
+<meta name="twitter:image" content="https://mmd307.uniskills.pro/og.png">
+<meta name="mmd-route" content="home">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"MMD 307 Pixel Quest","url":"https://mmd307.uniskills.pro/","inLanguage":"ar","author":{"@type":"Person","name":"Ahmed Salman","url":"https://dev.uniskills.pro/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Course","name":"MMD 307: Multimedia Programming","description":"شرح وحل مادة Multimedia Programming (MMD 307) بالعربي والمصطلحات إنجليزي: محاضرات 2 لـ 6، كويز تدريبي على كل محاضرة، كويز شامل، وامتحان ميد تجريبي محلول.","inLanguage":["ar","en"],"url":"https://mmd307.uniskills.pro/","provider":{"@type":"Person","name":"Ahmed Salman","url":"https://dev.uniskills.pro/"},"isAccessibleForFree":true}</script>
+<style>:root{padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=JetBrains+Mono:wght@400;600&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap">
+<style>
+/* Layout: arcade "world map" home → level pages (lesson + quiz). Single dark arcade look by choice. */
+:root{
+  --night:#05070d; --panel:#0d111c; --panel2:#151b2c; --line:#262d45;
+  --ink:#eef1f8; --muted:#8a93a8;
+  --coin:#ffd23f; --mint:#7c88ff; --sky:#7c88ff; --rose:#ff4d6d; --violet:#ffb547; --ok:#3ddc97;
+  --shadow:#000000; --glow:#6d7cff47;
+  --f-pixel:"Press Start 2P", "Courier New", monospace;
+  --f-term:"JetBrains Mono", ui-monospace, monospace;
+  --f-body:"IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--night)}
+body{color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.85;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 120px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--night)}
+#stars{position:fixed;inset:0;width:100%;height:100%;z-index:-1;image-rendering:pixelated}
+.floor{position:fixed;left:0;right:0;bottom:0;height:22vh;z-index:-1;pointer-events:none;perspective:220px;overflow:hidden;-webkit-mask-image:linear-gradient(transparent,#000 70%);mask-image:linear-gradient(transparent,#000 70%)}
+.floor i{position:absolute;left:-50%;right:-50%;top:0;height:200%;transform-origin:top;transform:rotateX(62deg);background-image:linear-gradient(#7c88ff55 1px,transparent 1px),linear-gradient(90deg,#7c88ff55 1px,transparent 1px);background-size:40px 40px;animation:floor 2.4s linear infinite}
+@keyframes floor{to{background-position:0 40px}}
+a{color:var(--sky)}
+.wrap{max-width:980px;margin:0 auto}
+h1,h2,h3{font-family:var(--f-pixel);font-weight:400;line-height:1.6;text-wrap:balance;margin:0}
+h1{font-size:clamp(18px,4vw,30px)}
+h2{font-size:clamp(14px,2.6vw,18px);color:var(--coin)}
+h3{font-size:12px;color:var(--mint);letter-spacing:.5px}
+p{margin:.4em 0}
+.ltr{direction:ltr;text-align:left}
+.t{font-family:var(--f-term);font-size:.9em;font-weight:600;color:var(--coin);font-weight:400;letter-spacing:.3px;unicode-bidi:isolate;white-space:nowrap}
+.t.m{color:var(--mint)} .t.s{color:var(--sky)} .t.r{color:var(--rose)}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--night);border-bottom:4px solid var(--line);
+  display:flex;align-items:center;gap:12px;padding-block:10px;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));
+  padding-inline:max(16px,env(safe-area-inset-left,0px))}
+.bar .logo{font-family:var(--f-pixel);font-size:11px;color:var(--coin);text-decoration:none;white-space:nowrap}
+.bar .logo b{color:var(--mint);font-weight:400}
+.bar nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;min-width:0}
+.bar nav a{font-family:var(--f-term);font-size:13px;color:var(--muted);text-decoration:none;padding:2px 8px;border:2px solid transparent;white-space:nowrap}
+.bar nav a.on,.bar nav a:hover{color:var(--ink);border-color:var(--line);background:var(--panel)}
+.xp{margin-inline-start:auto;font-family:var(--f-pixel);font-size:10px;color:var(--coin);white-space:nowrap;display:flex;align-items:center;gap:6px}
+.coin{width:12px;height:12px;background:var(--coin);box-shadow:inset -3px -3px 0 #c99a00;display:inline-block}
+
+/* pixel panel */
+.px{background:var(--panel);border:2px solid var(--line);box-shadow:4px 4px 0 0 var(--line);border-radius:6px;position:relative}
+.btn{font-family:var(--f-pixel);font-size:10px;line-height:1.4;background:var(--coin);color:#0b0d12;border:3px solid #000;padding:11px 14px;cursor:pointer;
+  box-shadow:inset -4px -4px #c99a00,inset 4px 4px #fff3b0,4px 4px #000;text-decoration:none;display:inline-block;transition:transform 80ms}
+.btn:hover{transform:translate(-1px,-1px)} .btn:active{transform:translate(3px,3px);box-shadow:inset -4px -4px #c99a00,inset 4px 4px #fff3b0}
+.btn.g{background:#7c88ff;box-shadow:inset -4px -4px #4b55e8,inset 4px 4px #b9c0ff,4px 4px #000}
+.btn.b{background:#ffb547;box-shadow:inset -4px -4px #d97a08,inset 4px 4px #ffe0b0,4px 4px #000}
+.btn.o{background:var(--panel2);color:var(--ink);box-shadow:inset -4px -4px #000,inset 4px 4px #262d45,4px 4px #000}
+:focus-visible{outline:3px dashed var(--coin);outline-offset:3px}
+
+/* hero */
+.hero{padding-block:28px 10px;display:grid;gap:14px}
+.eyebrow{font-family:var(--f-term);font-size:12px;color:var(--sky);letter-spacing:2px;text-transform:uppercase}
+.hero h1{color:#dfe3ff;text-shadow:3px 3px 0 #4b55e8}
+.hero h1 span{color:var(--coin);text-shadow:3px 3px 0 #a86f00}
+.hero p{color:var(--muted);max-width:62ch}
+.stage{height:150px;position:relative;overflow:hidden;margin-top:6px;border-bottom:6px solid #fff;box-shadow:0 3px 0 #000}
+.stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:8px;background:repeating-linear-gradient(90deg,#ffd23f 0 14px,#c99a00 14px 16px)}
+.stage canvas{position:absolute;bottom:8px;image-rendering:pixelated;filter:drop-shadow(0 0 14px rgba(124,136,255,.45))}
+.stage .block{position:absolute;bottom:8px;width:32px;height:32px;background:var(--coin);border:2px solid #000;box-shadow:inset -4px -4px 0 #c99a00,inset 4px 4px 0 #fff3b0;
+  font-family:var(--f-pixel);font-size:12px;color:#8a5a00;display:grid;place-items:center}
+.stage .block.q{bottom:104px}
+
+/* map */
+.map{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px;margin-top:22px}
+.lvl{padding:16px;display:grid;gap:10px;align-content:start}
+.lvl .no{font-family:var(--f-pixel);font-size:10px;color:#05070d;background:#7c88ff;border:2px solid #000;padding:4px 8px;justify-self:start}
+.lvl.boss .no{background:var(--rose);color:var(--ink)}
+.lvl.bonus .no{background:var(--violet)}
+.lvl h3{color:var(--ink);font-size:12px;line-height:1.7}
+.lvl p{color:var(--muted);font-size:14px;line-height:1.7}
+.lvl .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.best{font-family:var(--f-term);font-size:12px;color:var(--coin)}
+.note{border:3px dashed var(--line);padding:12px 14px;color:var(--muted);font-size:14px;margin-top:22px}
+
+/* lesson */
+.page-head{padding-block:26px 10px;display:grid;gap:8px}
+.lesson{display:grid;gap:22px;margin-top:12px}
+.sec{padding:20px}
+.sec > h2{margin-bottom:10px}
+.def{direction:ltr;text-align:left;border-left:6px solid var(--sky);background:#0a0d16;padding:10px 14px;margin:10px 0;color:#d6dbff;font-size:15px;line-height:1.7}
+.def b{color:var(--sky)}
+.tip{border:2px solid var(--coin);border-radius:4px;padding:10px 14px;margin:12px 0;background:#1a1708;display:grid;gap:2px}
+.tip::before{content:"EXAM TIP";font-family:var(--f-pixel);font-size:9px;color:var(--coin)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:10px 0}
+.card{background:var(--panel2);border:3px solid var(--line);padding:12px;min-width:0}
+.card .k{font-family:var(--f-term);font-weight:600;font-size:16px;color:var(--mint);direction:ltr;display:block}
+.card p{font-size:14.5px;line-height:1.7}
+.tbl{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;min-width:480px;font-size:14.5px}
+th,td{border:3px solid var(--line);padding:8px 10px;text-align:start;vertical-align:top}
+th{background:var(--panel2);font-family:var(--f-term);font-size:14px;font-weight:600;color:var(--coin)}
+ul.l{margin:6px 0;padding-inline-start:22px}
+ul.l li{margin:3px 0}
+ul.l li::marker{content:"▪ ";color:var(--mint)}
+.pipe{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:12px 0}
+.pipe .st{background:var(--panel2);border:3px solid var(--line);padding:8px 10px;min-width:0;flex:1 1 140px}
+.pipe .st small{font-family:var(--f-pixel);font-size:8px;color:var(--muted);display:block}
+.pipe .st b{font-family:var(--f-term);font-size:15px;font-weight:400;color:var(--ink);direction:ltr;display:block}
+.phase{font-family:var(--f-pixel);font-size:9px;padding:4px 8px;margin-top:12px;display:inline-block}
+.ph1{background:#7c88ff;color:#05070d} .ph2{background:var(--coin);color:#05070d} .ph3{background:var(--rose);color:var(--ink)}
+.demo{background:var(--night);border:3px solid var(--line);padding:14px;margin:12px 0;display:grid;gap:10px}
+.demo .lab{font-family:var(--f-pixel);font-size:9px;color:var(--mint)}
+.demo canvas{max-width:100%;image-rendering:pixelated;background:#0a0d16;display:block}
+.demo input[type=range]{width:100%;accent-color:var(--coin)}
+.sl{display:grid;grid-template-columns:auto 1fr 3.6em;gap:10px;align-items:center;direction:ltr;font-family:var(--f-term);font-size:14px}
+.swatchbox{height:90px;border:3px solid var(--line);background-color:#fff;background-image:linear-gradient(45deg,#ccc 25%,transparent 25%,transparent 75%,#ccc 75%),linear-gradient(45deg,#ccc 25%,transparent 25%,transparent 75%,#ccc 75%);background-size:20px 20px;background-position:0 0,10px 10px;position:relative}
+.swatchbox div{position:absolute;inset:0}
+code{font-family:var(--f-term);font-size:.9em;color:var(--mint);direction:ltr;unicode-bidi:isolate}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two > div{min-width:0}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+
+/* quiz */
+.qwrap{margin-top:16px;display:grid;gap:16px}
+.qtop{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.hpbar{height:16px;border:3px solid var(--line);background:var(--night);flex:1 1 200px;position:relative}
+.hpbar i{position:absolute;inset:0 auto 0 0;background:repeating-linear-gradient(90deg,var(--coin) 0 10px,#c99a00 10px 12px);transition:width .3s steps(6)}
+.qcount{font-family:var(--f-pixel);font-size:10px;color:var(--muted)}
+.qcard{padding:20px;direction:ltr;text-align:left}
+.qsec{font-family:var(--f-pixel);font-size:9px;color:var(--violet);margin-bottom:8px}
+.qtext{font-size:18px;font-weight:600;line-height:1.6;margin-bottom:14px}
+.qtext .n{font-family:var(--f-pixel);font-size:12px;color:var(--coin);margin-right:8px}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;background:var(--panel2);color:var(--ink);border:3px solid var(--line);padding:10px 12px;
+  font:inherit;font-size:15.5px;line-height:1.55;cursor:pointer;width:100%}
+.opt:hover:not([disabled]){border-color:var(--sky);transform:translateX(3px)}
+.opt .L{font-family:var(--f-pixel);font-size:10px;background:var(--night);color:var(--coin);padding:5px 7px;flex:none;margin-top:1px}
+.opt[disabled]{cursor:default}
+.opt.ok{border-color:var(--ok);background:#0f3a2c}
+.opt.ok .L{background:var(--ok);color:#05070d}
+.opt.bad{border-color:var(--rose);background:#3a1220}
+.opt.bad .L{background:var(--rose);color:var(--ink)}
+.opt.pick{border-color:var(--coin);background:#2e2810}
+.opt.pick .L{background:var(--coin);color:var(--night)}
+.exp{direction:rtl;text-align:right;margin-top:14px;border:3px solid var(--ok);padding:12px 14px;background:#0c2a22;font-size:15px}
+.exp.wr{border-color:var(--rose);background:#2a0f1a}
+.exp .h{font-family:var(--f-pixel);font-size:9px;color:var(--ok);display:block;margin-bottom:4px;direction:ltr;text-align:right}
+.exp.wr .h{color:var(--rose)}
+.qnav{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.result{padding:24px;text-align:center;display:grid;gap:12px;justify-items:center}
+.rank{font-family:var(--f-pixel);font-size:56px;color:var(--coin);text-shadow:6px 6px 0 var(--shadow)}
+.score{font-family:var(--f-pixel);font-size:14px}
+.key{display:grid;gap:12px}
+.krow{padding:14px 16px;direction:ltr;text-align:left;background:var(--panel);border:3px solid var(--line)}
+.krow .q{font-weight:600;margin-bottom:6px}
+.krow .q .n{font-family:var(--f-pixel);font-size:10px;color:var(--coin);margin-right:6px}
+.krow .a{color:var(--ok)}
+.krow .a.x{color:var(--rose);text-decoration:line-through}
+.krow .ex{direction:rtl;text-align:right;color:var(--muted);font-size:14.5px;margin-top:6px;border-top:2px dashed var(--line);padding-top:6px}
+.modes{display:flex;gap:8px;flex-wrap:wrap}
+.modes button[aria-pressed=true]{background:#7c88ff;color:#0b0d12;box-shadow:inset -4px -4px #4b55e8,inset 4px 4px #b9c0ff,4px 4px #000}
+
+/* guide character */
+#guide{position:fixed;left:max(12px,env(safe-area-inset-left,0px));bottom:max(10px,env(safe-area-inset-bottom,0px));z-index:20;display:flex;align-items:flex-end;gap:8px;pointer-events:none}
+#guide canvas{image-rendering:pixelated;pointer-events:auto;cursor:pointer;width:72px;height:108px;filter:drop-shadow(0 0 14px rgba(124,136,255,.45))}
+#bubble{pointer-events:auto;max-width:min(300px,64vw);background:#ffd23f;color:#0b0d12;font-size:14px;line-height:1.6;padding:10px 12px;
+  border:3px solid #000;box-shadow:4px 4px 0 #000;margin-bottom:70px;position:relative;direction:rtl;font-weight:600}
+#bubble::before{content:"";position:absolute;left:-12px;bottom:10px;border:6px solid transparent;border-right-color:var(--shadow);border-bottom-color:var(--shadow)}
+#bubble .x{position:absolute;top:-12px;right:-10px;width:22px;height:22px;background:var(--rose);color:var(--ink);border:0;font-family:var(--f-pixel);font-size:9px;cursor:pointer;box-shadow:2px 2px 0 var(--shadow)}
+.jump{animation:jump .5s steps(5)} @keyframes jump{0%,100%{transform:translateY(0)}40%{transform:translateY(-26px)}}
+.shake{animation:shake .4s steps(4)} @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.pop{animation:pop .25s steps(3)} @keyframes pop{from{transform:scale(.6)}to{transform:scale(1)}}
+.fade{animation:fade .35s steps(4)} @keyframes fade{from{opacity:.2;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:640px){
+  .two{grid-template-columns:1fr}
+  .bar .logo{font-size:9px}
+  .xp{display:none}
+  #guide canvas{width:56px;height:84px}
+  #bubble{margin-bottom:56px;font-size:13px}
+  .qtext{font-size:16.5px}
+}
+footer{margin-top:40px;color:var(--muted);font-family:var(--f-term);font-size:12px;text-align:center}
+
+/* readability + mobile polish */
+.allq{margin-top:10px;border:2px dashed var(--line);border-radius:6px;padding:10px 12px}
+.allq summary{cursor:pointer;font-weight:700;color:var(--coin)}
+.allq .key{margin-top:12px}
+h1,h2,h3{font-family:"Press Start 2P","IBM Plex Sans Arabic",monospace}
+.sec h2,.sec h3{unicode-bidi:plaintext;text-align:right}
+.t{white-space:normal;overflow-wrap:anywhere}
+.card,.pipe .st,.krow,.qcard,td{overflow-wrap:anywhere}
+.card p{margin:0}
+.lvl p span{display:block;margin-top:2px;font-size:12.5px;opacity:.85}
+a.me{color:var(--coin);text-decoration:none;border-bottom:2px solid var(--coin)}
+footer a{color:var(--coin);text-decoration:none;border-bottom:2px solid var(--coin);font-family:var(--f-pixel);font-size:10px}
+footer{font-family:var(--f-pixel);font-size:10px;padding-block:20px}
+@media (max-width:640px){
+  body{font-size:15px;line-height:1.8;padding-bottom:110px}
+  .bar{gap:8px;padding-block:8px}
+  .bar nav a{font-size:12px;padding:2px 6px}
+  .hero{padding-block:18px 4px}
+  .hero p{font-size:14.5px}
+  .stage{height:130px}
+  .map{gap:14px;margin-top:16px;grid-template-columns:1fr}
+  .lvl{padding:14px}
+  .page-head{padding-block:18px 4px}
+  .lesson{gap:16px}
+  .sec{padding:14px}
+  .sec h2{font-size:13px;line-height:1.7}
+  .cards{grid-template-columns:1fr 1fr;gap:8px}
+  .card{padding:10px}
+  .card .k{font-size:13.5px}
+  .card p{font-size:13.5px;line-height:1.65}
+  .def{font-size:14px;padding:8px 12px}
+  .tip{font-size:14px}
+  table{min-width:0;font-size:13px}
+  th,td{padding:6px 7px}
+  th{font-size:12px}
+  .pipe .st{flex:1 1 calc(50% - 8px);padding:8px}
+  .pipe .st b{font-size:13px}
+  .qcard{padding:14px}
+  .qtext{font-size:16px}
+  .opt{font-size:14.5px;padding:9px 10px;gap:10px}
+  .qtop{gap:8px}
+  .qtop .btn,.qnav .btn{padding:9px 11px;font-size:9px}
+  .btn{font-size:9px;padding:10px 12px}
+  .rank{font-size:44px}
+  .krow{padding:12px}
+  #guide canvas{width:44px;height:66px}
+  #bubble{margin-bottom:44px;font-size:12.5px;padding:8px 10px;max-width:min(260px,68vw)}
+}
+@media (max-width:360px){.cards{grid-template-columns:1fr}}
+</style>
+
+<canvas id="stars" aria-hidden="true"></canvas><div class="floor" aria-hidden="true"><i></i></div>
+<header class="bar" dir="ltr">
+  <a class="logo" href="#home">MMD<b>307</b>.QUEST</a>
+  <nav id="nav"></nav>
+  <div class="xp" title="XP from correct answers"><span class="coin"></span><span id="xp">0</span> XP</div>
+</header>
+<main class="wrap" id="app" dir="rtl">
+  <section class="hero">
+    <div class="eyebrow" dir="ltr">MMD 307 · MULTIMEDIA PROGRAMMING · BY <a class="me" href="https://dev.uniskills.pro/" target="_blank" rel="noopener">AHMED SALMAN</a></div>
+    <h1 dir="ltr">PRESS <span>START</span><br>TO PASS THE MIDTERM</h1>
+    <p>شرح وحل محاضرات 2 لـ 6 بالعربي والمصطلحات إنجليزي، كويز على كل محاضرة، كويز شامل محلول ومشروح، وامتحان ميد تجريبي. اختار level وابدأ.</p>
+    <div class="stage" id="stg" dir="ltr"><div class="block q" style="left:30%">?</div><div class="block q" style="left:62%">?</div><canvas id="walker" width="48" height="72" style="width: 64px; height: 96px; left: 64.4px; transform: none; bottom: 8px;"></canvas></div>
+  </section>
+  <div class="map">
+  <article class="lvl px ">
+    <span class="no" dir="ltr">LEVEL 2</span>
+    <h3 dir="ltr">Multimedia Basics</h3><p>أساسيات الملتيميديا. <span dir="ltr">Definition · Elements · Discrete vs Continuous · Linear vs Non-linear · Hypermedia</span></p>
+    <div class="row"><a class="btn" href="/lec-2/">LEARN</a><a class="btn g" href="/quiz-2/">QUIZ</a><span class="best" dir="ltr">NOT PLAYED</span></div>
+  </article><article class="lvl px ">
+    <span class="no" dir="ltr">LEVEL 3</span>
+    <h3 dir="ltr">Graphics in Multimedia</h3><p>الجرافيكس في الملتيميديا. <span dir="ltr">Purpose · Objectives · Raster vs Vector · Pixel · Bitmap · RGB / RGBA</span></p>
+    <div class="row"><a class="btn" href="/lec-3/">LEARN</a><a class="btn g" href="/quiz-3/">QUIZ</a><span class="best" dir="ltr">NOT PLAYED</span></div>
+  </article><article class="lvl px ">
+    <span class="no" dir="ltr">LEVEL 4</span>
+    <h3 dir="ltr">Basics of Animation</h3><p>أساسيات الأنيميشن. <span dir="ltr">Production stages · Storyboard · Animatic · Layout · Types of Animation</span></p>
+    <div class="row"><a class="btn" href="/lec-4/">LEARN</a><a class="btn g" href="/quiz-4/">QUIZ</a><span class="best" dir="ltr">NOT PLAYED</span></div>
+  </article><article class="lvl px ">
+    <span class="no" dir="ltr">LEVEL 5</span>
+    <h3 dir="ltr">Uses of Animation</h3><p>استخدامات الأنيميشن. <span dir="ltr">15 uses across industries</span></p>
+    <div class="row"><a class="btn" href="/lec-5/">LEARN</a><a class="btn g" href="/quiz-5/">QUIZ</a><span class="best" dir="ltr">NOT PLAYED</span></div>
+  </article><article class="lvl px ">
+    <span class="no" dir="ltr">LEVEL 6</span>
+    <h3 dir="ltr">Video in Multimedia</h3><p>الفيديو في الملتيميديا. <span dir="ltr">Definition · FPS · Components · Roles · Types · Quality · Examples</span></p>
+    <div class="row"><a class="btn" href="/lec-6/">LEARN</a><a class="btn g" href="/quiz-6/">QUIZ</a><span class="best" dir="ltr">NOT PLAYED</span></div>
+  </article><article class="lvl px bonus">
+    <span class="no" dir="ltr">BONUS</span>
+    <h3 dir="ltr">Design Elements &amp; Principles</h3><p>عناصر ومبادئ التصميم. <span dir="ltr">Point · Line · Shape · Balance · Contrast · Emphasis · Proportion</span></p>
+    <div class="row"><a class="btn" href="/lec-design/">LEARN</a><a class="btn g" href="/quiz-design/">QUIZ</a><span class="best" dir="ltr">NOT PLAYED</span></div>
+  </article>
+  <article class="lvl px boss"><span class="no" dir="ltr">BOSS 1</span><h3 dir="ltr">Challenge Quiz</h3><p>20 سؤال على التصميم والأنيميشن، محلولين ومشروحين سؤال سؤال.</p>
+    <div class="row"><a class="btn" href="/challenge/">PLAY</a><span class="best" dir="ltr">NOT PLAYED</span></div></article>
+  <article class="lvl px boss"><span class="no" dir="ltr">FINAL BOSS</span><h3 dir="ltr">Mock Midterm</h3><p>35 سؤال على كل المحاضرات: Practice (الإجابة بعد كل سؤال) أو Exam (الإجابات في الآخر).</p>
+    <div class="row"><a class="btn" href="/mock/">PLAY</a><span class="best" dir="ltr">NOT PLAYED</span></div></article>
+  </div>
+</main>
+<div id="guide"><canvas id="hero" width="48" height="72" aria-label="Ahmed, the pixel guide"></canvas><div id="bubble" role="status"><button class="x" aria-label="Hide message">X</button><span id="say"></span></div></div>
+
+<script>
+/* ============ routing mode (hash in artifact, real paths when self-hosted) ============ */
+const ROUTE_META=document.querySelector('meta[name="mmd-route"]');
+const STATIC=!!ROUTE_META;
+const U=h=>STATIC?(h==="home"?"/":"/"+h+"/"):"#"+h;
+const PAGE_TITLES={home:"MMD 307 Pixel Quest | شرح وحل Multimedia Programming"};
+/* ============ storage helpers ============ */
+const store={get(k,d){try{const v=localStorage.getItem("mmd307:"+k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+  set(k,v){try{localStorage.setItem("mmd307:"+k,JSON.stringify(v))}catch(e){}}};
+let XP=store.get("xp",0);
+const xpEl=document.getElementById("xp"); xpEl.textContent=XP;
+function addXP(n){XP+=n;store.set("xp",XP);xpEl.textContent=XP}
+
+/* ============ Ahmed pixel character (from dev.uniskills.pro) ============ */
+const AHMED=(function(){const X={};const e={s(a){for(let i=0;i<a.length;i+=3)X[a[i]]=a[i+2]}};"use strict";let t="#24160f",r="#4d2f20",n="#eab089",a="#cf8f68",o="#f7cca8",l="#e8907a",s="#2a1a12",i="#2b1b13",c="#a24e44",u="#ffffff",f="#0f0f14",d="#3a2f55",p="#a593db",h="#d9dce4",m="#2a3f82",g="#1d2c60",b="#dde2f4",w="#e2672c",y="#b44b1c",v="#f79c5d",x=(e,t)=>{let r=43758.5453*Math.sin(127.1*e+311.7*t);return r-Math.floor(r)};e.s(["H",0,72,"o",0,{idle:{armL:[[12,48],[13,55]],armR:[[36,48],[35,55]],glasses:"face",eyes:"open",mouth:"smile",bob:0},wave1:{armL:[[8,35],[7,27]],armR:[[36,48],[35,55]],glasses:"face",eyes:"open",mouth:"grin",bob:0},wave2:{armL:[[8,35],[10,27]],armR:[[36,48],[35,55]],glasses:"face",eyes:"open",mouth:"grin",bob:0},point:{armL:[[8,42],[2,41]],armR:[[36,48],[35,55]],glasses:"face",eyes:"open",mouth:"grin",bob:0},peek:{armL:[[12,48],[13,55]],armR:[[36,48],[35,55]],glasses:"low",eyes:"open",mouth:"smile",brows:"up",bob:0},reach:{armL:[[9,39],[15,27]],armR:[[36,48],[35,55]],glasses:"face",eyes:"open",mouth:"smile",bob:0},hold:{armL:[[8,47],[9,41]],armR:[[36,48],[35,55]],glasses:"hand",eyes:"open",mouth:"grin",brows:"up",bob:0},wink:{armL:[[8,47],[9,41]],armR:[[36,48],[35,55]],glasses:"hand",eyes:"wink",mouth:"grin",brows:"up",bob:0},blinkOff:{armL:[[8,47],[9,41]],armR:[[36,48],[35,55]],glasses:"hand",eyes:"blink",mouth:"grin",brows:"up",bob:0},thumb:{armL:[[12,48],[13,55]],armR:[[40,44],[36,37]],glasses:"face",eyes:"open",mouth:"grin",bob:0,thumbUp:!0},cheer:{armL:[[8,34],[10,26]],armR:[[40,34],[38,26]],glasses:"face",eyes:"open",mouth:"grin",bob:0},walk1:{armL:[[11,47],[15,53]],armR:[[37,47],[33,55]],glasses:"face",eyes:"open",mouth:"smile",bob:0,legs:"walkA"},walk2:{armL:[[13,48],[10,54]],armR:[[35,48],[38,53]],glasses:"face",eyes:"open",mouth:"smile",bob:0,legs:"walkB"},type1:{armL:[[12,48],[19,52]],armR:[[36,48],[30,53]],glasses:"face",eyes:"open",mouth:"smile",bob:0,prop:"laptop"},type2:{armL:[[12,48],[19,53]],armR:[[36,48],[30,52]],glasses:"face",eyes:"open",mouth:"smile",bob:0,prop:"laptop"},typeGrin:{armL:[[12,48],[19,53]],armR:[[36,48],[30,53]],glasses:"face",eyes:"open",mouth:"grin",bob:0,prop:"laptop"},idleNight:{armL:[[12,48],[13,55]],armR:[[36,48],[35,55]],glasses:"none",eyes:"open",mouth:"smile",bob:0},sleep:{armL:[[12,49],[14,55]],armR:[[36,49],[34,55]],glasses:"low",eyes:"blink",mouth:"o",bob:0,sleeping:!0},talk:{armL:[[12,48],[13,55]],armR:[[38,46],[34,50]],glasses:"face",eyes:"open",mouth:"open",bob:0},present:{armL:[[7,44],[3,46]],armR:[[41,44],[45,46]],glasses:"face",eyes:"open",mouth:"grin",bob:0},think:{armL:[[12,48],[13,55]],armR:[[36,44],[27,37]],glasses:"face",eyes:"open",mouth:"smile",brows:"up",bob:0},shrug:{armL:[[7,42],[5,37]],armR:[[41,42],[43,37]],glasses:"low",eyes:"open",mouth:"smile",brows:"up",bob:0},surprised:{armL:[[8,38],[12,31]],armR:[[40,38],[36,31]],glasses:"low",eyes:"open",mouth:"o",brows:"up",bob:0},phone:{armL:[[12,48],[13,55]],armR:[[38,44],[33,40]],glasses:"face",eyes:"open",mouth:"grin",bob:0,prop:"phone"},mic:{armL:[[11,44],[17,37]],armR:[[36,48],[35,55]],glasses:"face",eyes:"open",mouth:"open",bob:0,prop:"mic"},trophy:{armL:[[9,33],[12,25]],armR:[[40,36],[38,28]],glasses:"face",eyes:"open",mouth:"grin",bob:0,prop:"trophy"},map:{armL:[[11,47],[16,46]],armR:[[37,47],[32,46]],glasses:"face",eyes:"open",mouth:"grin",bob:0,prop:"map"},coinShow:{armL:[[12,48],[13,55]],armR:[[39,42],[36,36]],glasses:"low",eyes:"wink",mouth:"grin",brows:"up",bob:0,prop:"coin"},love:{armL:[[11,48],[20,46]],armR:[[37,48],[28,46]],glasses:"face",eyes:"open",mouth:"grin",bob:0,prop:"heart",blush:!0}},"W",0,48,"G",0,function(e,t,r){let n=(e,t)=>[e[0]+(t[0]-e[0])*r,e[1]+(t[1]-e[1])*r];return{...r<.5?e:t,armL:[n(e.armL[0],t.armL[0]),n(e.armL[1],t.armL[1])],armR:[n(e.armR[0],t.armR[0]),n(e.armR[1],t.armR[1])],bob:e.bob}},"O",0,function(e,k){let R=new Map,M=(e,t)=>48*t+e,j=k.bob,L=(e,t,r)=>{e=Math.round(e),t=Math.round(t),e<0||t<0||e>=48||t>=72||R.set(M(e,t),r)},S=(e,t,r,n,a)=>{for(let o=t;o<=n;o++)for(let t=e;t<=r;t++)L(t,o,"string"==typeof a?a:a(t,o))},T=(e,t,r,n,a)=>{for(let o=Math.floor(t-n);o<=Math.ceil(t+n);o++)for(let l=Math.floor(e-r);l<=Math.ceil(e+r);l++)((l-e)/r)**2+((o-t)/n)**2<=1&&L(l,o,"string"==typeof a?a:a(l,o))},E=(e,t,r,n)=>T(e,t,r,r,n),C=(e,t,r,n)=>{let a=2*Math.max(Math.abs(t[0]-e[0]),Math.abs(t[1]-e[1]))+1;for(let o=0;o<=a;o++){let l=o/a;E(e[0]+(t[0]-e[0])*l,e[1]+(t[1]-e[1])*l,r,(e,t)=>n(e,t,l))}},A=e=>e+j,P=(e,t,r)=>{S(e+t,57,e+6+t,67-r,r=>r>=e+5+t?"#253354":"#34476f"),S(e-1+1.5*t,68-r,e+6+1.5*t,69-r,"#f3f3f3"),S(e-1+1.5*t,70-r,e+6+1.5*t,70-r,"#2a2a30")},_=k.legs??"stand";P(17,"walkA"===_?-2:+("walkB"===_),+("walkB"===_)),P(25,"walkA"===_?1:"walkB"===_?-2:0,+("walkA"===_));let $=k.outfit??"default",N="gdgoc"===$?{base:"#eef0f3",sh:"#c9ced6",cuff:"#202124"}:"eduskills"===$?{base:"#2fa36b",sh:"#22825a",cuff:"#2fa36b"}:{base:w,sh:y,cuff:m};if("gdgoc"===$){S(13,A(38),35,A(57),e=>e>=31?"#c9ced6":"#eef0f3"),T(24,A(38),8,2.2,"#c9ced6"),S(21,A(39),21,A(44),"#202124"),S(27,A(39),27,A(44),"#202124"),T(14,A(40),3.5,2.5,"#eef0f3"),T(34,A(40),3.5,2.5,"#eef0f3");let e=A(49);S(19,e-2,20,e-2,"#ea4335"),S(18,e-1,19,e-1,"#ea4335"),S(17,e,18,e,"#4285f4"),S(18,e+1,19,e+1,"#4285f4"),S(19,e+2,20,e+2,"#4285f4"),S(28,e-2,29,e-2,"#34a853"),S(29,e-1,30,e-1,"#34a853"),S(30,e,31,e,"#34a853"),S(29,e+1,30,e+1,"#fbbc04"),S(28,e+2,29,e+2,"#fbbc04"),S(13,A(56),35,A(57),"#c9ced6")}else if("eduskills"===$)S(14,A(38),34,A(57),e=>e>=31?"#22825a":"#2fa36b"),T(24,A(37.5),5,1.6,"#22825a"),T(14.5,A(40),3.3,2.5,"#2fa36b"),T(33.5,A(40),3.3,2.5,"#2fa36b"),S(21,A(44),23,A(51),"#ffffff"),S(24,A(44),27,A(45),"#ffffff"),S(24,A(47),26,A(48),"#ffffff"),S(24,A(50),27,A(51),"#ffffff"),S(14,A(56),34,A(57),"#22825a");else{S(15,A(38),33,A(57),e=>e>=30?g:m),S(21,A(39),21,A(45),b),S(27,A(39),27,A(45),b),T(24,A(38),8,2.2,g);let e=(e,t,r)=>{let n=(t-A(38))%4;return 3===n?y:0===n&&e!==r?v:w};S(12,A(39),19,A(58),(t,r)=>19===t?y:e(t,r,19)),S(29,A(39),36,A(58),(t,r)=>t>=35||29===t?y:e(t,r,29)),T(14,A(40),3.5,2.5,w),T(34,A(40),3.5,2.5,w),S(16,A(37),18,A(38),v),S(30,A(37),32,A(38),w),"ramadan"===k.season&&(L(31,A(42),"#ffd23f"),L(32,A(43),"#ffd23f"),L(31,A(44),"#ffd23f"))}S(21,A(35),27,A(37),e=>e>=26?a:n),T(13.5,A(26),1.8,2.6,a),T(34.5,A(26),1.8,2.6,a),T(24,A(25.5),10,10.5,(e,t)=>e>=31||t>A(33)?a:n),L(17,A(25),o),L(18,A(25),o),L(17,A(30),l),L(31,A(30),l),k.blush&&(S(16,A(29),18,A(30),l),S(30,A(29),32,A(30),l));let O=(e,n)=>{let a=x(Math.floor(e/2),Math.floor(n/2)),o=(e+2*n+Math.floor(3*a))%5;return 0===o&&a>.35?r:1===o&&a>.86?"#70472f":t};T(24,A(13.8),11.6,6.2,O),T(22.5,A(11.6),8.6,4.6,O),T(28,A(12.6),6.8,4,O);for(let e=0;e<=12;e++){let r=1.08*Math.PI+e/12*Math.PI*.84;x(e,5)>.45&&L(24+11.2*Math.cos(r),A(13.4)+6.6*Math.sin(r),t)}S(14,A(15),34,A(17),O);for(let e=16;e<=32;e++)x(e,3)>.6&&L(e,A(18),t);S(13,A(15),14,A(23),(e,n)=>x(e,n)>.45?t:r),S(34,A(15),35,A(23),(e,n)=>x(e,n)>.45?t:r),S(14,A(19),14,A(25),t),S(34,A(19),34,A(25),t);let q="up"===k.brows?A(19):A(20);S(16,q,21,q+1,s),S(27,q,32,q+1,s),L(16,q+2,s),L(32,q+2,s);let I=(e,t)=>{t?S(e,A(25),e+4,A(25),s):(S(e,A(24),e+4,A(25),"#ffffff"),S(e+1,A(23),e+3,A(25),"#7a4428"),S(e+2,A(24),e+2,A(25),"#1c0f0a"),L(e+1,A(23),"#c48a5e"),S(e-1,A(22),e+5,A(22),s),L(e+5,A(23),s))},z="face"!==k.glasses;k.sleeping&&(k={...k,eyes:"blink"}),z&&(I(17,"blink"===k.eyes),I(27,"blink"===k.eyes||"wink"===k.eyes)),S(24,A(27),24,A(29),a),L(23,A(30),a),L(25,A(30),a),S(20,A(31),28,A(32),i),L(19,A(33),i),L(29,A(33),i),"grin"===k.mouth?(S(21,A(33),27,A(34),c),S(22,A(33),26,A(33),u)):"open"===k.mouth?(S(21,A(33),27,A(35),c),S(22,A(34),26,A(34),"#5a1e1a"),S(22,A(33),26,A(33),u)):"o"===k.mouth?(S(23,A(33),25,A(35),c),L(24,A(34),"#5a1e1a")):(S(21,A(33),27,A(33),c),L(20,A(32),c),L(28,A(32),c)),S(24,A(35),24,A(35),i),S(22,A(36),26,A(37),i),S(23,A(38),25,A(38),i);for(let e=16;e<=32;e++)x(e,7)>.5&&L(e,A(34)+(e<19||e>29?-1:0),a);let B=(e,t,r=!1)=>{if(r){S(e,t,e+4,t+3,f),S(e+6,t,e+10,t+3,f),S(e+1,t+1,e+3,t+2,d),S(e+7,t+1,e+9,t+2,d),L(e+1,t+1,p),L(e+7,t+1,p),S(e+5,t,e+5,t,h);return}S(e,t,e+7,t+5,f),S(e+10,t,e+17,t+5,f),S(e+1,t+1,e+6,t+4,(e,r)=>r>=t+3?"#5c4c83":d),S(e+11,t+1,e+16,t+4,(e,r)=>r>=t+3?"#5c4c83":d),L(e+2,t+1,p),L(e+3,t+1,p),L(e+12,t+1,p),L(e+13,t+1,p),S(e+8,t,e+9,t,h),S(e+8,t+2,e+9,t+2,f),S(e-1,t,e-1,t,h),S(e+18,t,e+18,t,h),S(e-2,t+1,e-1,t+1,h),S(e+18,t+1,e+19,t+1,h)};if("face"===k.glasses){B(15,A(22));let e=k.glint??-1;if(e>=0){let t=15+Math.round(24*e)-4;for(let e=0;e<4;e++)for(let r of[16,26]){let n=t+e,a=A(23)+3-e;n>=r&&n<=r+5&&L(n,a,"#ffffff"),n+1>=r&&n+1<=r+5&&L(n+1,a,"#d8cff5")}}}"low"===k.glasses&&B(15,A(25));let V=(e,[t,r],o)=>{let l=[e[0],A(e[1])],s=[t[0],A(t[1])],i=[r[0],A(r[1])],c=(e,t,r)=>"default"===$?Math.round(9*r)%3==0?N.sh:N.base:r>.55?N.sh:N.base;C(l,s,1.9,c),C(s,i,1.7,c),E(s[0]+(i[0]-s[0])*.82,s[1]+(i[1]-s[1])*.82,1.5,()=>N.cuff),T(i[0],i[1],1.8,1.8,e=>e>i[0]?a:n),o&&B(i[0]-3,i[1]-5,!0)};if(V([14,40],k.armL,"hand"===k.glasses),V([34,40],k.armR,!1),k.thumbUp&&(L(k.armR[1][0],A(k.armR[1][1])-2,n),L(k.armR[1][0],A(k.armR[1][1])-3,n)),k.armL[1][0]<=3&&L(k.armL[1][0]-2,A(k.armL[1][1]),n),"laptop"===k.prop&&(S(15,A(45),33,A(55),(e,t)=>t===A(45)?"#e9ecf2":e>=31?"#9aa1b0":"#c3c8d3"),L(22,A(50),"#7c88ff"),L(23,A(49),"#7c88ff"),L(23,A(51),"#7c88ff"),L(25,A(48),"#ffb547"),L(24,A(52),"#ffb547"),L(26,A(50),"#7c88ff"),L(25,A(49),"#7c88ff"),L(25,A(51),"#7c88ff"),S(13,A(56),35,A(57),"#7d8494")),"eid"===k.season){for(let e=0;e<7;e++)S(26-Math.floor(e/2),A(1+e),26+Math.floor(e/2),A(1+e),e%2?"#ff4d6d":"#ffd23f");L(26,A(0),"#7c88ff")}if("ramadan"===k.season&&!k.prop&&k.armR[1][1]>50){let e=Math.round(k.armR[1][0])+2,t=Math.round(A(k.armR[1][1]))+1;S(e-1,t,e+1,t,"#c99a00"),S(e-2,t+1,e+2,t+5,(e,t)=>(e+t)%2?"#ffd23f":"#ffb547"),S(e-1,t+2,e+1,t+4,"#fff3b0"),S(e-2,t+6,e+2,t+6,"#c99a00")}let U=[Math.round(k.armL[1][0]),Math.round(A(k.armL[1][1]))],Z=[Math.round(k.armR[1][0]),Math.round(A(k.armR[1][1]))];if("phone"===k.prop&&(S(Z[0]-3,Z[1]-9,Z[0]+1,Z[1]-1,"#111318"),S(Z[0]-2,Z[1]-8,Z[0],Z[1]-2,(e,t)=>(e+t)%3==0?"#ff2c55":"#25f4ee")),"mic"===k.prop&&(S(U[0]-1,U[1]-6,U[0]+1,U[1]-1,"#2a2a30"),S(U[0]-2,U[1]-9,U[0]+2,U[1]-6,"#c9ccd4"),L(U[0]-1,U[1]-8,"#ffffff")),"trophy"===k.prop&&(S(U[0]-4,U[1]-10,U[0]+4,U[1]-6,"#ffd23f"),S(U[0]-5,U[1]-10,U[0]-5,U[1]-8,"#c99a00"),S(U[0]+5,U[1]-10,U[0]+5,U[1]-8,"#c99a00"),S(U[0]-1,U[1]-5,U[0]+1,U[1]-3,"#c99a00"),S(U[0]-3,U[1]-2,U[0]+3,U[1]-1,"#8a6a00"),L(U[0]-2,U[1]-9,"#fff3b0")),"map"===k.prop&&(S(U[0],U[1]-6,Z[0],Z[1]-1,(e,t)=>(7*e+3*t)%11==0?"#c0392b":(e+t)%5==0?"#d9b26a":"#f1d9a0"),S(U[0]+3,U[1]-4,U[0]+6,U[1]-4,"#8a5a2b"),L(Math.round((U[0]+Z[0])/2)+2,U[1]-3,"#c0392b")),"coin"===k.prop&&(S(Z[0]-2,Z[1]-7,Z[0]+2,Z[1]-3,"#ffd23f"),S(Z[0]-1,Z[1]-6,Z[0]-1,Z[1]-4,"#fff3b0"),S(Z[0]+1,Z[1]-6,Z[0]+1,Z[1]-4,"#c99a00")),"heart"===k.prop){let e=A(44);for(let[t,r]of[[-3,-1],[-2,-2],[-1,-1],[1,-1],[2,-2],[3,-1],[-3,0],[3,0],[-2,1],[2,1],[-1,2],[1,2],[0,3]])L(24+t,e+r,"#ff4d6d");S(22,e-1,26,e+1,"#ff4d6d"),S(23,e+2,25,e+2,"#ff4d6d"),L(22,e-1,"#ffb3c1")}let D=new Map(R);for(let e of R.keys()){let t=e%48,r=Math.floor(e/48);for(let[e,n]of[[1,0],[-1,0],[0,1],[0,-1]]){let a=t+e,o=r+n;a<0||o<0||a>=48||o>=72||R.has(M(a,o))||D.set(M(a,o),"#150d1d")}}for(let[t,r]of(e.clearRect(0,0,48,72),D))e.fillStyle=r,e.fillRect(t%48,Math.floor(t/48),1,1)}]);return X})();
+function drawPose(cv,name,extra){const x=cv.getContext("2d");x.imageSmoothingEnabled=false;AHMED.O(x,{...AHMED.o[name],...(extra||{})})}
+/* guide character */
+const G=document.getElementById("hero"), bubble=document.getElementById("bubble"), sayEl=document.getElementById("say");
+let gState="idle", gTimer=0, gTick=0;
+const ANIM={idle:["idle"],talk:["talk","idle"],happy:["cheer","trophy","cheer","thumb"],sad:["shrug","surprised"],think:["think"],wave:["wave1","wave2"]};
+function setG(st,ms){gState=st;gTick=0;clearTimeout(gTimer);if(ms)gTimer=setTimeout(()=>gState="idle",ms)}
+setInterval(()=>{gTick++;const seq=ANIM[gState]||ANIM.idle;let p=seq[Math.floor(gTick/3)%seq.length];
+  if(gState==="sad")p=seq[0];
+  if(gState==="idle"&&gTick%40===0)p="peek";
+  drawPose(G,p,{glint:gState==="idle"?((gTick%25)/6):-1})},120);
+let hideT=0;
+function say(t,mood){sayEl.innerHTML=t;bubble.hidden=false;clearTimeout(hideT);hideT=setTimeout(()=>bubble.hidden=true,innerWidth<640?4500:6500);bubble.classList.remove("pop");void bubble.offsetWidth;bubble.classList.add("pop");
+  G.classList.remove("jump","shake");void G.offsetWidth;
+  if(mood==="happy"){setG("happy",1800);G.classList.add("jump")}else if(mood==="sad"){setG("sad",1800);G.classList.add("shake")}else if(mood==="think"){setG("think",1800)}else if(mood==="wave"){setG("wave",2000)}else{setG("talk",1500)}}
+bubble.querySelector(".x").onclick=()=>bubble.hidden=true;
+const TIPS=["المصطلحات اللي بالأصفر دي اللي بتيجي في الامتحان بالنص.","حل كويز المحاضرة بعد ما تخلص شرحها على طول.","الامتحان غالباً MCQ، ركز على الـ definitions والأمثلة.","اضغط عليا تاني لو عايز نصيحة جديدة.","متنساش تذاكر الـ Design Elements & Principles كمان."];
+let tipI=0; G.onclick=()=>say(TIPS[tipI++%TIPS.length],"think");
+
+/* ============ starfield ============ */
+(function(){const c=document.getElementById("stars"),x=c.getContext("2d");let st=[];
+ function rs(){c.width=Math.ceil(innerWidth/4);c.height=Math.ceil(innerHeight/4);st=Array.from({length:70},()=>({x:Math.random()*c.width,y:Math.random()*c.height,p:Math.random()*6,s:Math.random()<.15}))}
+ rs();addEventListener("resize",rs);
+ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+ function t(ts){x.clearRect(0,0,c.width,c.height);st.forEach(s=>{const on=Math.sin(ts/600+s.p)>-.3;x.fillStyle=s.s?"#ffd23f":(on?"#8a93a8":"#262d45");x.fillRect(Math.floor(s.x),Math.floor(s.y),1,1)});if(!reduce)requestAnimationFrame(t)}
+ requestAnimationFrame(t)})();
+
+/* ============ content ============ */
+const T=(s,c="")=>`<b class="t ${c}">${s}</b>`;
+const LECS={
+"2":{title:"Multimedia Basics",ar:"أساسيات الملتيميديا",sub:"Definition · Elements · Discrete vs Continuous · Linear vs Non-linear · Hypermedia",
+hello:"أهلاً! دي أول محاضرة في الميد: تعريف الـ Multimedia وعناصرها وأنواعها. ركز في المقارنات.",
+html:`
+<section class="sec px"><h2>1. What is Multimedia?</h2>
+<p>الـ ${T("Multimedia")} ليها أكتر من تعريف في السلايدز، والتلاتة ممكن ييجوا سؤال:</p>
+<div class="def"><b>Def 1:</b> Multimedia is any combination of <b>text, graphic art, sound, animation and video</b> delivered by any electronic means.</div>
+<div class="def"><b>Def 2:</b> An <b>interdisciplinary application-oriented technology</b> that capitalizes on the <b>multi-sensory</b> nature of humans.</div>
+<div class="def"><b>Def 3:</b> Digital multimedia is the integration of <b>up to six media types</b> in an interactive, color computing environment.</div>
+<p>يعني ببساطة: أي حاجة بتجمع أكتر من نوع ميديا (نص + صورة + صوت ...) وبتوصلك بشكل إلكتروني. والإنسان ${T("multi-sensory","m")} لأنه بيتواصل بحواسه الخمسة: ${T("sight, hearing, touch, smell, taste","s")}.</p>
+<div class="tip">لو جالك "how many media types" الإجابة <b>6</b>. ولو جالك "capitalizes on what?" الإجابة <b>multi-sensory nature of humans</b>.</div>
+</section>
+
+<section class="sec px"><h2>2. Elements of Multimedia</h2>
+<p>العناصر الستة اللي بتتكون منها أي Multimedia:</p>
+<div class="cards">
+<div class="card"><span class="k">Text</span><p>الكلام المكتوب. هو الأساس في المواقع والـ e-books.</p></div>
+<div class="card"><span class="k">Graphics</span><p>illustrations و diagrams و charts بتضيف شكل جذاب للمحتوى.</p></div>
+<div class="card"><span class="k">Images</span><p>صور ثابتة <bdi>(static)</bdi>: photograph, sketch, logo, layout... أي تمثيل مرئي لفكرة.</p></div>
+<div class="card"><span class="k">Audio</span><p>music, voiceovers, sound effects. بيمر بـ recording → processing → storing → delivery. صيغ: ${T("WAV, MP3, AIFF")}.</p></div>
+<div class="card"><span class="k">Video</span><p>صور متحركة <bdi>(moving images)</bdi> غالباً معاها soundtrack. recording → processing → copying → reproducing.</p></div>
+<div class="card"><span class="k">Animation</span><p>عرض سريع لصور ثابتة متتالية، عادةً <b>24 frames per second</b>، عشان تعمل ${T("illusion of motion","m")}.</p></div>
+</div>
+<div class="tip">رقم <b>24 fps</b> للـ Animation سؤال مضمون تقريباً.</div>
+</section>
+
+<section class="sec px"><h2>3. Characteristics of a Multimedia System</h2>
+<ul class="l">
+<li>لازم يكون ${T("computer controlled")}.</li>
+<li>${T("Integrated")}: العناصر متجمعة مع بعض.</li>
+<li>المعلومات لازم تكون ${T("represented digitally")}.</li>
+<li>الـ interface بتاع العرض النهائي غالباً ${T("interactive")}.</li>
+</ul>
+<div class="tip">خد بالك من سؤال "Which is NOT a characteristic". أي اختيار فيه analog أو manual أو "not computer controlled" يبقى غلط.</div>
+</section>
+
+<section class="sec px"><h2>4. Discrete vs Continuous Media</h2>
+<div class="tbl"><table>
+<tr><th></th><th>Discrete <bdi>(Static)</bdi></th><th>Continuous <bdi>(Dynamic)</bdi></th></tr>
+<tr><td>الفكرة</td><td>مكونة من وحدات منفصلة، تقدر تتعامل مع كل جزء لوحده</td><td>معتمدة على مرور الوقت، لازم تتعرض بالترتيب <bdi>(sequential)</bdi></td></tr>
+<tr><td>علاقتها بالوقت</td><td>${T("Time independent")}</td><td>${T("Time dependent")}</td></tr>
+<tr><td>أمثلة</td><td>Text, Images, Graphics, Charts/Diagrams, Data</td><td>Video, Audio, Animation</td></tr>
+</table></div>
+<p>مثال: كلمة أو جملة تقدر تقراها لوحدها <bdi>(discrete)</bdi>، لكن فيديو MP4 لازم يتشغل بالترتيب الزمني عشان تفهمه <bdi>(continuous)</bdi>.</p>
+<div class="tip">حفظها كده: <b>Discrete = Static</b> و <b>Continuous = Dynamic / Time-based</b>.</div>
+<h3>أمثلة من الحياة</h3>
+<ul class="l">
+<li>الجرنال الديجيتال: Multimedia لأنه بيجمع text + images.</li>
+<li>التليفزيون: video + audio. لو قصدنا "التجربة والمحتوى" يبقى Multimedia، ولو قصدنا "الجهاز نفسه" يبقى media.</li>
+<li>${T("WhatsApp")}: بيجمع كل العناصر <bdi>(text, images, video, voice notes)</bdi>.</li>
+</ul>
+<div class="tip">الـ <b>core requirement</b> للـ modern multimedia هو <b>Interactivity</b>: إن اليوزر يتحكم في المحتوى ويتفاعل معاه، مش مجرد دمج audio مع video.</div>
+<p>${T("Interactive multimedia","m")}: لما اليوزر يكون عنده تحكم في <b>إيه</b> المعلومات اللي يشوفها و<b>إمتى</b> يشوفها.</p>
+</section>
+
+<section class="sec px"><h2>5. Linear vs Non-linear Multimedia</h2>
+<div class="tbl"><table>
+<tr><th></th><th>Linear</th><th>Non-linear</th></tr>
+<tr><td>العرض</td><td>بيتعرض بترتيب ثابت <bdi>(sequential)</bdi></td><td>مش بترتيب، اليوزر بيختار</td></tr>
+<tr><td>اليوزر</td><td>${T("Passive")} بيتفرج بس</td><td>${T("Interactive")} ومشاركته مهمة جداً، هو المتحكم</td></tr>
+<tr><td>أمثلة</td><td>PowerPoint presentation, Movie, Live stream, TV commercial, Cassette tape, Anime episode, YouTube video, Wikipedia</td><td>Website, YouTube channel, Search engine home page, E-learning, DVD menu, Video game</td></tr>
+</table></div>
+<div class="tip">خد بالك: المحاضرة حاطة <b>Wikipedia = Linear</b> لأنها مش بتسمح بتفاعل كتير وهدفها توصيل معلومات. و <b>YouTube video = Linear</b> لكن <b>YouTube channel = Non-linear</b>.</div>
+<h3>Multimedia Presentation</h3>
+<ul class="l">
+<li>ممكن تكون ${T("live")} أو ${T("recorded")}.</li>
+<li>الـ recorded: التفاعل بيكون عن طريق ${T("navigation system","m")}.</li>
+<li>الـ live: التفاعل بيكون مع الـ ${T("presenter or performer","m")}.</li>
+</ul>
+</section>
+
+<section class="sec px"><h2>6. Hypertext & Hypermedia</h2>
+<div class="two">
+<div class="card"><span class="k">Hypertext</span><p>نص فيه links بتوديك لنصوص تانية. معمول عشان يتقري ${T("non-linearly","m")} بإنك تتبع اللينكات.</p></div>
+<div class="card"><span class="k">Hypermedia</span><p>نفس الفكرة بس مش محصورة في النص: فيها graphics و images وخصوصاً الـ continuous media زي sound و video.</p></div>
+</div>
+<p>أمثلة على Hypermedia: ${T("World Wide Web <bdi>(WWW)</bdi>")} وده <b>أحسن مثال</b>، و PowerPoint و Adobe Acrobat <bdi>(PDF)</bdi> و Adobe Flash.</p>
+</section>
+
+<section class="sec px"><h2>7. Components of Multimedia</h2>
+<div class="tbl"><table>
+<tr><th>Component</th><th>Examples</th></tr>
+<tr><td>Capture devices</td><td class="ltr">Keyboard, Microphone, Video/still cameras, Scanner, Touch, Sensors</td></tr>
+<tr><td>Storage devices</td><td class="ltr">CD, DVD, Flash memory, Cloud</td></tr>
+<tr><td>Communication networks</td><td class="ltr">Internet, Wireless WAN, Wireless LAN, Wireless MAN</td></tr>
+<tr><td>Computer systems</td><td>الجهاز اللي بيشغل البرنامج</td></tr>
+<tr><td>Display devices</td><td>الشاشات وأجهزة العرض</td></tr>
+</table></div>
+<p>${T("Input")}: بيخلي البرنامج يستجيب (تشغيل animation، اختيار صفحة، تسجيل صوت، تصوير). ${T("Output")}: اللي البرنامج بيطلعه (صورة على الشاشة، فيديو شغال، صوت، UI بيتحدث). والبرنامج هو اللي بيربط الاتنين.</p>
+</section>`},
+
+"3":{title:"Graphics in Multimedia",ar:"الجرافيكس في الملتيميديا",sub:"Purpose · Objectives · Raster vs Vector · Pixel · Bitmap · RGB / RGBA",
+hello:"محاضرة الجرافيكس! جرب الـ zoom demo والـ RGBA sliders تحت عشان الفكرة تثبت.",
+html:`
+<section class="sec px"><h2>1. What is Graphics?</h2>
+<p>أي حاجة مترسومة أو متصممة بشكل مرئي عشان تمثل معلومة أو فكرة. ومن غيرها الأبلكيشنز كانت هتبقى ${T("text-only")}.</p>
+<div class="def">The word "<b>graphic</b>" refers to any <b>visual representation of data</b>: drawings, photographs, line art, graphs, diagrams, numbers, symbols, geometric designs, maps, and engineering drawings. Used for <b>decorative or functional</b> purposes <bdi>(educating, illustrating, entertaining)</bdi>.</div>
+<p>أمثلة: ${T("Logo")} و ${T("Mobile UI")} و ${T("Games Graphics")}.</p>
+</section>
+
+<section class="sec px"><h2>2. The Purpose of Graphic Design</h2>
+<ol class="l">
+<li>توصيل المعلومة بشكل مرئي بدل النص بس. ليه بنفضل الـ visual؟ ${T("Speed of comprehension")}، ${T("Simplifying complex data")}، ${T("Boosting engagement & focus")}، ${T("Information retention <bdi>(visual memory)</bdi>")}.</li>
+<li>جذب الانتباه وتحسين الـ ${T("user experience")}.</li>
+<li>التعبير عن فكرة أو ${T("visual identity")}.</li>
+<li>دعم الـ ${T("interactivity")} في برامج الملتيميديا <bdi>(buttons, icons, animations)</bdi>.</li>
+<li><b>الهدف الأساسي:</b> ${T("communicate and solve problems through visual content","m")}.</li>
+<li>بيستخدم في branding, advertising, web design, editorial design, packaging.</li>
+<li>الهدف: ${T("attract, engage, and inform")} الجمهور، عشان ياخد action أو يتعمل brand recognition قوي.</li>
+</ol>
+</section>
+
+<section class="sec px"><h2>3. Key Objectives of Graphic Design</h2>
+<div class="cards">
+<div class="card"><span class="k">Brand Recognition</span><p>هوية مميزة وسهلة التذكر <bdi>(name, logo, shape, voice)</bdi>.</p></div>
+<div class="card"><span class="k">User Engagement</span><p>تصميم يجذب الانتباه ويحافظ عليه.</p></div>
+<div class="card"><span class="k">Information Clarity</span><p>عرض المعلومة بشكل واضح ومقنع.</p></div>
+<div class="card"><span class="k">Call to Action <bdi>(CTA)</bdi></span><p>تشجيع اليوزر على رد فعل: يدوس button أو يشتري.</p></div>
+<div class="card"><span class="k">Communication</span><p>توصيل الفكرة بوضوح.</p></div>
+<div class="card"><span class="k">Attractiveness</span><p>تصميم حلو يشد اليوزر.</p></div>
+<div class="card"><span class="k">Usability</span><p>سهل الاستخدام والفهم.</p></div>
+<div class="card"><span class="k">Creativity</span><p>حلول مرئية جديدة.</p></div>
+</div>
+<div class="tip">لو السؤال بيقول "guiding user interaction, such as clicking a button" يبقى <b>Call to Action <bdi>(CTA)</bdi></b>.</div>
+</section>
+
+<section class="sec px"><h2>4. Raster vs Vector</h2>
+<div class="tbl"><table>
+<tr><th></th><th>Raster <bdi>(Bitmap)</bdi></th><th>Vector</th></tr>
+<tr><td>مكون من</td><td>${T("Pixels")} (زي الصور الفوتوغرافية)</td><td>${T("Mathematical lines and paths")}</td></tr>
+<tr><td>التكبير</td><td>بيخسر جودة <bdi>(resolution-dependent)</bdi></td><td>مش بيخسر جودة</td></tr>
+<tr><td>صيغ</td><td class="ltr">PNG, JPEG/JPG, BMP, GIF</td><td class="ltr">SVG, AI <bdi>(Adobe Illustrator)</bdi></td></tr>
+<tr><td>استخدام</td><td>صور الكاميرا والصور اللي أونلاين</td><td>Logos و drawings</td></tr>
+</table></div>
+<div class="demo"><span class="lab">DEMO: ZOOM IN</span>
+<div class="sl"><span>zoom</span><input type="range" id="zoom" min="1" max="10" value="1" aria-label="Zoom level"><span id="zv">1x</span></div>
+<div class="two" dir="ltr"><div><p class="lab">RASTER (16×16 px)</p><canvas id="rast" width="160" height="160" style="width:100%;max-width:220px"></canvas></div>
+<div><p class="lab">VECTOR <bdi>(math circle)</bdi></p><svg id="vect" viewBox="0 0 160 160" style="width:100%;max-width:220px;background:#0a0d16;display:block"><circle id="vc" cx="80" cy="80" r="56" fill="#7c88ff"/></svg></div></div>
+<p>كبّر وشوف: الـ raster بيظهر فيه مربعات <bdi>(pixelation)</bdi>، والـ vector فاضل ناعم لأن الدايرة معادلة رياضية بتترسم من جديد.</p></div>
+</section>
+
+<section class="sec px"><h2>5. Pixel & Bitmap</h2>
+<div class="def">A <b>pixel</b> is the <b>smallest unit of a digital image</b>. Each pixel represents a color value <bdi>(RGB or RGBA)</bdi>. Millions of pixels together form the complete image.</div>
+<p>شاشة ${T("1920×1080")} يعني 1920 pixel <b>أفقي</b> و 1080 pixel <b>رأسي</b>.</p>
+<div class="def">A <b>bitmap</b> is an image made up of many pixels arranged in a <b>grid</b>. Each pixel's color is stored as a numeric value. <b>.bmp</b> is a common example.</div>
+<div class="two">
+<div class="card"><span class="k">Pixel</span><p>= نقطة واحدة.</p></div>
+<div class="card"><span class="k">Bitmap</span><p>= مجموعة pixels بتكوّن الصورة.</p></div>
+</div>
+<p>أمثلة على فن الـ pixel: ${T("Pac-Man")}، ${T("Super Mario")}، ${T("Pixel Art")}، و Halftone / Dot Matrix / Dithering.</p>
+<h3>إيه اللي بيحصل لما تكبر صورة raster زيادة؟</h3>
+<ul class="l">
+<li>${T("Pixelation")}: المربعات بتبان بالعين وتختفي الـ smooth edges.</li>
+<li>${T("Loss of quality & sharpness")}: التفاصيل تبوظ لأن نفس الداتا اتمطت على مساحة أكبر.</li>
+<li>${T("Digital artifacts / computational guesswork")}: الـ ${T("interpolation algorithms","m")} بت"خمّن" الألوان بين الـ pixels فالصورة تبان باهتة أو مشوهة.</li>
+</ul>
+<div class="tip">صورة 1200×800 شكلها طبيعي، نفس الصورة 120×80 لما تتكبر يحصل <b>pixelation</b>. الـ resolution والـ image size لازم يتاخدوا مع بعض.</div>
+<h3>علاقة Pixel Art بالـ Multimedia Programming</h3>
+<ol class="l">
+<li>فهم إزاي الكمبيوتر بيحول الصورة لـ ${T("matrix of pixels")}.</li>
+<li>${T("Data structures for graphics")}: تخزين ومعالجة raster و vector والتحكم في الـ resolution (زي Pac-Man و Mario).</li>
+<li>${T("Digital image processing")}: خوارزميات pixelation هي أساس فلاتر تعديل الصور.</li>
+<li>تطور الـ UI والألعاب من pixel لـ 3D هو أساس الـ game engines.</li>
+</ol>
+</section>
+
+<section class="sec px"><h2>6. RGB & RGBA</h2>
+<div class="two">
+<div class="card"><span class="k">RGB</span><p>Red, Green, Blue. كل لون = 3 قيم، كل قيمة من <b>0 لـ 255</b>. <code>rgb(255,0,0)</code> = أحمر صافي.</p></div>
+<div class="card"><span class="k">RGBA</span><p>نفس RGB + قناة ${T("Alpha")} للشفافية، عادةً من <b>0 لـ 1</b> (أو 0–255). <code>rgba(255,0,0,0.5)</code> = أحمر شفاف 50%.</p></div>
+</div>
+<div class="demo"><span class="lab">DEMO: MIX A COLOR</span>
+<div class="sl"><span style="color:#ff5d73">R</span><input type="range" id="cr" min="0" max="255" value="255" aria-label="Red"><span id="crv">255</span></div>
+<div class="sl"><span style="color:#4de3b0">G</span><input type="range" id="cg" min="0" max="255" value="0" aria-label="Green"><span id="cgv">0</span></div>
+<div class="sl"><span style="color:#6ec1ff">B</span><input type="range" id="cb" min="0" max="255" value="0" aria-label="Blue"><span id="cbv">0</span></div>
+<div class="sl"><span>A</span><input type="range" id="ca" min="0" max="100" value="100" aria-label="Alpha"><span id="cav">1</span></div>
+<div class="swatchbox"><div id="sw"></div></div>
+<code id="cssout" style="text-align:center">rgba(255, 0, 0, 1)</code></div>
+<div class="tip"><b>RGB = Color only</b> و <b>RGBA = Color + Transparency</b>.</div>
+</section>`},
+
+"4":{title:"Basics of Animation",ar:"أساسيات الأنيميشن",sub:"Production stages · Storyboard · Animatic · Layout · Types of Animation",
+hello:"المحاضرة دي كلها ترتيب مراحل. احفظ الـ pipeline بالترتيب وانت كسبان.",
+html:`
+<section class="sec px"><h2>1. What is Animation?</h2>
+<p>الـ Animation هو فن إنك تدي حياة للحاجات الجامدة (${T("bringing inanimate objects to life")})، يعني تخلي الصور والجرافيكس تتحرك بشكل طبيعي.</p>
+<div class="def">Animation is a combination of <b>art and technology</b>.</div>
+<p>بيستخدم في العروض التعليمية والإعلانات والألعاب والأفلام، وبيبسط المفاهيم المعقدة ويشد الانتباه. أنواعه بتشمل 2D و 3D و frame-by-frame و computer-based.</p>
+<div class="tip">سؤال متوقع: "What are the two main things that animation successfully combines?" = <b>Art and technology</b>.</div>
+</section>
+
+<section class="sec px"><h2>2. Stages of Animation Design</h2>
+<p>3 مراحل كبيرة: ${T("Pre-Production")} ثم ${T("Production")} ثم ${T("Post-Production")}.</p>
+<span class="phase ph1">PRE-PRODUCTION</span>
+<div class="pipe">
+<div class="st"><small>STEP 1</small><b>Idea</b>أول خطوة: الفكرة الأساسية والهدف والجمهور والقصة.</div>
+<div class="st"><small>STEP 2</small><b>Script</b>الخطة المكتوبة: الحوار، الأكشن والمشاهد، وتعليمات للمخرج <bdi>(camera moves, emotions)</bdi>.</div>
+<div class="st"><small>STEP 3</small><b>Voice Recording</b>بعد السكريبت وقبل الأنيميشن.</div>
+<div class="st"><small>STEP 4</small><b>Design & Concept Art</b>أول صورة مرئية للعمل بعد السكريبت.</div>
+<div class="st"><small>STEP 5</small><b>Storyboard</b>تحويل السيناريو من كلام لصور.</div>
+<div class="st"><small>+</small><b>Animatic</b>storyboard متوقّت مع صوت.</div>
+<div class="st"><small>STEP 6</small><b>Layout</b>تخطيط تفصيلي لكل shot.</div>
+</div>
+<span class="phase ph2">PRODUCTION</span>
+<div class="pipe">
+<div class="st"><small>FIRST STAGE</small><b>Background</b>أول مرحلة في الإنتاج الفعلي.</div>
+<div class="st"><small>CORE</small><b>Character Animation</b>الرسومات الثابتة بتبدأ تتحرك.</div>
+</div>
+<span class="phase ph3">POST-PRODUCTION</span>
+<div class="pipe">
+<div class="st"><small>FINAL STAGE</small><b>Compositing & Editing</b>تجميع كل حاجة في الفيلم النهائي.</div>
+</div>
+</section>
+
+<section class="sec px"><h2>3. Pre-Production بالتفصيل</h2>
+<h3>Voice Recording ليه قبل الأنيميشن؟</h3>
+<p>بيتعمل ${T("after the script and before animation")} عشان الأنيميتورز ي${T("match the characters' lip movements","m")} مع الصوت المسجل <bdi>(lip sync)</bdi>. والصوت بيدي الشخصيات حياة وشخصية.</p>
+<div class="tip">سؤال "Why is voice recording done before animation?" إجابته دايماً: lip sync.</div>
+<h3>Design & Conceptual Art</h3>
+<ul class="l"><li>أول صورة مرئية للعمل بعد السكريبت.</li><li>تصميم الشخصيات بكل الـ poses والـ emotions.</li><li>تحديد الـ drawing style.</li><li>تحديد الألوان والخامات والـ mood العام.</li></ul>
+<h3>Storyboard</h3>
+<ul class="l"><li>${T("Translating the scenario from words to images")}.</li><li>بيوضح إزاي الحاجة بتحصل وإزاي بتتقال.</li><li>الأفضل تسجل الصوت <b>قبل</b> الـ storyboard عشان توصل مشاعر الشخصية صح.</li></ul>
+<h3>Animatic</h3>
+<div class="def">An animatic is a <b>timed sequence of storyboard images with sound and music</b>. It helps plan motion, pacing, and storytelling before full animation. It is the stage <b>between the storyboard and the final animation</b>.</div>
+<p>بناخد فريمات الـ storyboard ونعملها slideshow، وممكن نضيف sound effects و camera movements.</p>
+<h3>Layout</h3>
+<p>تخطيط المشهد بعد الـ storyboard: بيحدد ${T("camera position & angle")}، مكان الشخصيات في الفريم، حجم كل عنصر <bdi>(foreground / background)</bdi>، واتجاه حركة الكاميرا أو الشخصية.</p>
+<div class="two">
+<div class="card"><span class="k">Storyboard</span><p>= الفكرة وتسلسل المشهد.</p></div>
+<div class="card"><span class="k">Layout</span><p>= التنفيذ التفصيلي لكل shot <bdi>(composition + camera + perspective)</bdi>.</p></div>
+</div>
+</section>
+
+<section class="sec px"><h2>4. Production & Post-Production</h2>
+<p>${T("Background")}: أول مرحلة في الـ actual production للعمل النهائي.</p>
+<p>${T("Character Animation")}: المرحلة اللي الرسومات الثابتة بتتحرك فيها. الشخصيات والكاميرا وعناصر المشهد بتتحرك بدقة عشان تعبر عن مشاعر وحركة واقعية. التقنيات: ${T("frame-by-frame","m")} أو ${T("digital tweening","m")}. ودي من أهم المراحل.</p>
+<p>${T("Compositing & Editing")}: آخر مرحلة.</p>
+<ul class="l"><li><b>Compositing</b> = دمج كل العناصر المرئية <bdi>(characters, backgrounds, effects, lighting)</bdi> في مشهد واحد.</li>
+<li><b>Editing</b> = ترتيب اللقطات وضبط التوقيت وإضافة الصوت والموسيقى.</li></ul>
+</section>
+
+<section class="sec px"><h2>5. Types of Animation</h2>
+<div class="cards">
+<div class="card"><span class="k">1. Traditional</span><p>الكلاسيك زي أفلام Disney القديمة. كل frame مترسوم <b>باليد</b>.</p></div>
+<div class="card"><span class="k">2. 2D</span><p>زي التقليدي بس على الكمبيوتر. مثال: The Simpsons و SpongeBob.</p></div>
+<div class="card"><span class="k">3. 3D</span><p>شخصيات ومشاهد في digital space بعمق وواقعية. مثال: Toy Story و Frozen.</p></div>
+<div class="card"><span class="k">4. Stop Motion</span><p>تحريك أجسام حقيقية <bdi>(clay, puppets)</bdi> حتة حتة وتصويرها. مثال: Wallace and Gromit <bdi>(Claymation)</bdi>.</p></div>
+<div class="card"><span class="k">5. Motion Graphics</span><p>أنيميشن الإعلانات واليوتيوب لتوصيل معلومة، غالباً <b>من غير شخصيات</b>.</p></div>
+<div class="card"><span class="k">6. Typography</span><p>تحريك النص نفسه: fonts و colors و movement.</p></div>
+<div class="card"><span class="k">7. Whiteboard</span><p>${T("Explainer videos")}، كأن حد بيرسم على سبورة.</p></div>
+</div>
+<div class="tip">ركز على الأمثلة: SpongeBob = 2D، Toy Story = 3D، Wallace and Gromit = Stop Motion.</div>
+</section>`},
+
+"5":{title:"Uses of Animation",ar:"استخدامات الأنيميشن",sub:"15 uses across industries",
+hello:"المحاضرة دي حفظ: 15 استخدام. الأسئلة غالباً بتديك وصف وتسألك ده أنهي مجال.",
+html:`
+<section class="sec px"><h2>15 Uses of Animation Across Industries</h2>
+<p>كل مجال ومعاه الكلمة المفتاحية اللي هتعرفه بيها في السؤال:</p>
+<div class="tbl"><table>
+<tr><th>#</th><th>Industry</th><th>الفكرة + الكلمة المفتاحية</th></tr>
+<tr><td>1</td><td class="ltr">Entertainment</td><td>أفلام، TV، ألعاب. مبقاش كرتون بس، بيشكل عوالم في film و media وحتى app design.</td></tr>
+<tr><td>2</td><td class="ltr">Advertising</td><td>إعلانات engaging و memorable بالحركة والألوان. أمثلة: Coca-Cola Happiness Factory، Cadbury Dairy Milk Aliens، Heinz Baked Beans.</td></tr>
+<tr><td>3</td><td class="ltr">Education</td><td>تبسيط الأفكار المعقدة، ${T("self-paced learning")}.</td></tr>
+<tr><td>4</td><td class="ltr">Medical</td><td>شرح ${T("anatomy & procedures")} بـ 3D visuals للدكاترة والطلبة والمرضى.</td></tr>
+<tr><td>5</td><td class="ltr">Architecture</td><td>تصور المباني قبل البناء، ${T("virtual walkthroughs")} للعملاء، كشف المشاكل، وتسويق العقارات.</td></tr>
+<tr><td>6</td><td class="ltr">Engineering & Manufacturing</td><td>${T("Simulate system performance")} و prototypes قبل الإنتاج. بيوفر وقت وفلوس.</td></tr>
+<tr><td>7</td><td class="ltr">Fashion Design</td><td>عرض الهدوم وحركة القماش في ${T("digital runways")}.</td></tr>
+<tr><td>8</td><td class="ltr">Storytelling & Journalism</td><td>الأخبار بقت visual storytelling، بتبسط المواضيع المعقدة.</td></tr>
+<tr><td>9</td><td class="ltr">Tourism & Hospitality</td><td>الفنادق بتعرض الغرف والخدمات وتشجع على الـ bookings.</td></tr>
+<tr><td>10</td><td class="ltr">Gaming</td><td>أساس كل لعبة 3D، تجربة ${T("immersive")}.</td></tr>
+<tr><td>11</td><td class="ltr">Retail</td><td>عرض المنتجات، ${T("3D & AI-generated animations")} تشوف المنتج من كل الزوايا، تجربة شراء personalized.</td></tr>
+<tr><td>12</td><td class="ltr">Training & Simulation</td><td>${T("Virtual simulations")} من الطيران للجراحة، تتدرب ${T("safely without real-world risks","m")}.</td></tr>
+<tr><td>13</td><td class="ltr">Event Planning</td><td>light shows و 3D effects في المؤتمرات.</td></tr>
+<tr><td>14</td><td class="ltr">Marketing & Branding</td><td>${T("Mascots")} و logos و ads، بتبني brand recognition.</td></tr>
+<tr><td>15</td><td class="ltr">Science & Research</td><td>تحويل الداتا العلمية لـ visuals، زي ${T("molecules")} و ${T("black holes")}.</td></tr>
+</table></div>
+<div class="tip">فرّق بين: <b>Engineering</b> <bdi>(simulate performance / prototypes)</bdi> و <b>Training & Simulation</b> <bdi>(practice flying / surgery safely)</bdi> و <b>Medical</b> <bdi>(anatomy explanation)</bdi>.</div>
+</section>
+<section class="sec px"><h2>Famous Examples</h2>
+<div class="two">
+<div class="card"><span class="k">Mishmish Effendi</span><p>(مشمش أفندي) <b>أول فيلم كرتون مصري</b>.</p></div>
+<div class="card"><span class="k">A Bug's Life</span><p>فيلم أنيميشن من إنتاج <b>Pixar</b> سنة <b>1998</b>، عن حياة النمل اللي بيواجه الجراد.</p></div>
+</div>
+</section>`},
+
+"6":{title:"Video in Multimedia",ar:"الفيديو في الملتيميديا",sub:"Definition · FPS · Components · Roles · Types · Quality · Examples",
+hello:"آخر محاضرة في الميد. جرب الـ FPS demo عشان تحس الفرق بين 15 و 60.",
+html:`
+<section class="sec px"><h2>1. Definition of Video</h2>
+<div class="def">Video is a <b>series of sequential images</b> displayed at a specific speed (usually <b>24 or 30 frames per second</b>) to create a sense of natural movement, often accompanied by sound, music, or commentary.</div>
+<p>الفيديو من أهم عناصر الملتيميديا لأنه بيجمع ${T("sound, images, and motion")} في تجربة متكاملة. والمعدل الطبيعي بين ${T("24 و 30 fps")}.</p>
+<div class="demo"><span class="lab">DEMO: SAME MOTION, DIFFERENT FPS</span>
+<canvas id="fps" width="320" height="120" style="width:100%"></canvas>
+<p>كل ما الـ fps يزيد الحركة تبقى أنعم. 15 fps بتبان متقطعة، 24 هي معيار السينما، 30 للتليفزيون والفيديو، 60 ناعمة جداً (ألعاب).</p></div>
+</section>
+
+<section class="sec px"><h2>2. Video Components</h2>
+<div class="cards">
+<div class="card"><span class="k">Image</span><p>Sequential frames.</p></div>
+<div class="card"><span class="k">Audio</span><p>Dialogue, music, actors.</p></div>
+<div class="card"><span class="k">Texts & Titles</span><p>Titles and subtitles.</p></div>
+<div class="card"><span class="k">Visual Effects</span><p>Transitions and effects.</p></div>
+<div class="card"><span class="k">Speed & Pacing</span><p>Speed, pacing, and movement.</p></div>
+</div>
+</section>
+
+<section class="sec px"><h2>3. The Role of Video in Multimedia</h2>
+<ol class="l">
+<li>${T("Effective Communication Tool")}: بيشد الانتباه أكتر من النص والصور الثابتة، لأنه بيخاطب أكتر من حاسة (${T("sight and hearing","m")}).</li>
+<li>${T("Educational & Training Tool")}: شرح ومحاكاة المفاهيم الصعبة زي التجارب العلمية.</li>
+<li>${T("Artistic & Marketing Element")}: في الإعلانات والمواقع والعروض.</li>
+<li>${T("Interaction Supporter")}: في الـ interactive videos اليوزر ${T("chooses the path or outcome","m")}.</li>
+</ol>
+<h3>Importance</h3>
+<ul class="l"><li>بيشد الانتباه أكتر من النص والصور.</li><li>بيوصل المعلومة بوضوح وسرعة.</li><li>بيستخدم في الـ training و e-learning.</li><li>بيحسن الـ user experience في المواقع والأبلكيشنز.</li></ul>
+</section>
+
+<section class="sec px"><h2>4. Types & Quality</h2>
+<div class="cards">
+<div class="card"><span class="k">Real Video</span><p>متصور بكاميرا.</p></div>
+<div class="card"><span class="k">Animated Video</span><p>معتمد على animation و motion graphics.</p></div>
+<div class="card"><span class="k">Interactive Video</span><p>اليوزر يتحكم في العرض أو يختار المسار.</p></div>
+</div>
+<div class="tbl"><table>
+<tr><th>Quality Feature</th><th>المعنى</th></tr>
+<tr><td class="ltr">Resolution</td><td>زي <span class="ltr">720p, 1080p, 4K</span></td></tr>
+<tr><td class="ltr">Frame Rate</td><td>سرعة عرض الصور <bdi>(fps)</bdi></td></tr>
+<tr><td class="ltr">Video Compression</td><td>تقليل حجم الملف، صيغ زي <span class="ltr">MP4, AVI, MOV</span></td></tr>
+</table></div>
+</section>
+
+<section class="sec px"><h2>5. Examples of Video / Multimedia Use</h2>
+<div class="tbl"><table>
+<tr><th>Area</th><th>Key idea</th><th>Examples</th></tr>
+<tr><td class="ltr">1. Interactive Websites</td><td>text + audio + video + graphics + animation، اليوزر بيتفاعل بالـ click و swipe و typing، ${T("two-way communication")}</td><td class="ltr">Google Earth Web, Spotify Wrapped, Patatap, Airbnb Experiences, Species in Pieces</td></tr>
+<tr><td class="ltr">2. Online Videos</td><td>streaming، وصول فوري</td><td class="ltr">YouTube; educational, marketing, awareness, interactive, explainer videos</td></tr>
+<tr><td class="ltr">3. Television</td><td>live أو pre-recorded</td><td class="ltr">Educational TV, commercials, news & infographics, documentaries, Smart TV</td></tr>
+<tr><td class="ltr">4. Video Games</td><td>3D graphics، cinematic cutscenes، ambient music</td><td class="ltr">Minecraft Education, Brain Age, Kahoot, Call of Duty, Tomb Raider, Need for Speed, FIFA, Final Fantasy, Genshin Impact</td></tr>
+<tr><td class="ltr">5. Film</td><td>camera work, acting, audio, VFX</td><td class="ltr">BBC "Inside the Human Body" (3D animation), corporate films</td></tr>
+<tr><td class="ltr">6. Radio</td><td>صوت أساساً، بس فيه voice acting و sound effects و music و scripted dialogue</td><td class="ltr">Radio France Education, university radio</td></tr>
+<tr><td class="ltr">7. E-Learning</td><td>text, video lectures, quizzes, simulations</td><td class="ltr">Coursera, Moodle, Edmodo, Khan Academy</td></tr>
+<tr><td class="ltr">8. Digital Art</td><td>أي عمل متصمم على الكمبيوتر</td><td class="ltr">Digital billboards, logos, UI/UX, games</td></tr>
+<tr><td class="ltr">9. Social Media</td><td>images, GIFs, video, captions في post واحد</td><td class="ltr">Reels, TikTok ads, AJ+ posts, LinkedIn stories</td></tr>
+<tr><td class="ltr">10. Advertising & Marketing</td><td>بيأثر على ${T("consumer behavior")}</td><td class="ltr">TV commercials, LED billboards, landing pages, AR ads, Advergames</td></tr>
+</table></div>
+<div class="tip"><b>Species in Pieces</b> نوع الفن بتاعه: <b>Low Poly Art</b> (وكمان interactive web art و code-based art).</div>
+</section>`},
+
+"design":{title:"Design Elements & Principles",ar:"عناصر ومبادئ التصميم",sub:"Point · Line · Shape · Balance · Contrast · Emphasis · Proportion",bonus:true,
+hello:"عناصر ومبادئ التصميم. ركز على أنواع الـ Balance الثلاثة.",
+html:`
+<section class="sec px"><h2>1. Elements of Design</h2>
+<div class="cards">
+<div class="card"><span class="k">Point / Dot</span><p><b>أبسط عنصر مرئي</b> في التصميم. ملوش length ولا width ولا volume.</p></div>
+<div class="card"><span class="k">Line</span><p>${T("The path of a point moving through space","m")}. ليها أنواع/نهايات: <b>solid, dashed, dotted</b>.</p></div>
+<div class="card"><span class="k">Shape</span><p>${T("Closed lines or areas with defined boundaries","m")}.</p></div>
+<div class="card"><span class="k">Space</span><p>المساحة حوالين وفوق وجوه العناصر <bdi>(the area around, above, or within objects)</bdi>.</p></div>
+<div class="card"><span class="k">Texture</span><p>الإحساس بملمس السطح <bdi>(the perceived surface quality of an object)</bdi>.</p></div>
+<div class="card"><span class="k">Color</span><p>hue, value, intensity.</p></div>
+</div>
+<h3>مشاعر الخطوط</h3>
+<ul class="l"><li>${T("Straight lines")} → ${T("Stability","m")} وثبات ونظام.</li><li>${T("Curved lines")} → حركة وانسيابية ونعومة.</li><li>${T("Zigzag / diagonal")} → طاقة وتوتر.</li></ul>
+<div class="tip">الاختيارات الغلط في الكويز كانت تعريفات لعناصر تانية: "perceived surface quality" = Texture، "area around objects" = Space. اعرفها عشان تستبعدها بسرعة.</div>
+</section>
+<section class="sec px"><h2>2. Principles of Design</h2>
+<p>${T("Design principles")} هي ${T("fundamental guidelines that ensure visual compositions are organized, effective, and aesthetically pleasing","m")}.</p>
+<h3>Balance</h3>
+<p>${T("The distribution of visual weight within a composition")}. وليه 3 أنواع:</p>
+<div class="demo" dir="ltr"><div class="cards" style="margin:0">
+<div><p class="lab">SYMMETRICAL</p><svg viewBox="0 0 120 80" style="width:100%;background:#0a0d16"><line x1="60" y1="0" x2="60" y2="80" stroke="#3d3780" stroke-dasharray="3 3"/><rect x="18" y="22" width="28" height="36" fill="#7c88ff"/><rect x="74" y="22" width="28" height="36" fill="#7c88ff"/></svg><p style="direction:rtl;text-align:right">وزن متساوي على الجانبين → <b>Harmony & stability</b>.</p></div>
+<div><p class="lab">ASYMMETRICAL</p><svg viewBox="0 0 120 80" style="width:100%;background:#0a0d16"><rect x="12" y="14" width="48" height="52" fill="#ffcc33"/><rect x="80" y="44" width="14" height="14" fill="#ffcc33"/><rect x="98" y="20" width="10" height="10" fill="#ffcc33"/></svg><p style="direction:rtl;text-align:right">توزيع غير متساوي → visual <b>dynamic & interesting</b>.</p></div>
+<div><p class="lab">RADIAL</p><svg viewBox="0 0 120 80" style="width:100%;background:#0a0d16"><g fill="#6ec1ff"><rect x="56" y="36" width="8" height="8"/><rect x="56" y="10" width="8" height="8"/><rect x="56" y="62" width="8" height="8"/><rect x="30" y="36" width="8" height="8"/><rect x="82" y="36" width="8" height="8"/><rect x="38" y="18" width="8" height="8"/><rect x="74" y="18" width="8" height="8"/><rect x="38" y="54" width="8" height="8"/><rect x="74" y="54" width="8" height="8"/></g></svg><p style="direction:rtl;text-align:right">العناصر <b>radiate from a central point</b> في دواير أو خطوط مستقيمة.</p></div>
+</div></div>
+<h3>Contrast</h3>
+<p>${T("The differences between elements")}: light vs dark، large vs small. تأثيره: ${T("adds visual interest and draws attention to the focal point","m")}. في النص بيتحقق بـ ${T("using different styles")} <bdi>(bold, size, font, color)</bdi>.</p>
+<h3>Emphasis</h3>
+<p>${T("Creating a focal point")} عشان تشد عين المشاهد لأهم جزء.</p>
+<h3>Proportion</h3>
+<p>${T("The relationship in size between different elements")} في التصميم.</p>
+</section>`}
+};
+
+/* ============ questions ============ */
+const Q=(q,o,a,e,sec)=>({q,o,a,e,sec});
+const QUIZ={
+"2":[
+Q("Which of the following best defines Multimedia?",["Any combination of text and numbers printed on paper","Any combination of text, graphic art, sound, animation and video delivered by any electronic means","A single type of media shown on a computer","Hardware devices used to store files"],1,"ده Def 1 بالنص: combination of text, graphic, sound, animation and video <b>delivered electronically</b>. الورق مش electronic، ونوع واحد مش multi."),
+Q("Multimedia capitalizes on which nature of humans?",["Logical nature","Social nature","Multi-sensory nature","Visual-only nature"],2,"Humans are <b>multi-sensory</b>: sight, hearing, touch, smell, taste."),
+Q("Digital multimedia is the integration of up to how many media types?",["Three","Four","Six","Ten"],2,"Def 3: integration of <b>up to six</b> media types in an interactive, color computing environment."),
+Q("Animation usually displays static images at a rate of:",["5 frames per second","12 frames per second","24 frames per second","100 frames per second"],2,"الـ Animation = rapid display of static images <b>usually at 24 fps</b> to produce the illusion of motion."),
+Q("Which audio file formats are mentioned in the lecture?",["WAV, MP3, AIFF","JPG, PNG, GIF","SVG, AI, PDF","MP4, AVI, MOV"],0,"Audio formats: <b>WAV, MP3, AIFF</b>. الباقيين صور أو vector أو فيديو."),
+Q("Which of the following is NOT a characteristic of a multimedia system?",["It must be computer controlled","It is integrated","Information must be represented digitally","Information must be stored on analog tape only"],3,"الخصائص: computer controlled, integrated, digital, interactive interface. الـ <b>analog</b> عكس <b>digital</b> فهو الغلط."),
+Q("Text, images, charts and data are examples of:",["Continuous media","Discrete media","Linear media","Hypermedia"],1,"دول وحدات منفصلة تقدر تتعامل معاها لوحدها ومش محتاجة playback time → <b>Discrete (static)</b>."),
+Q("Continuous media is best described as:",["Time-independent media","Media made of separate units","Time-dependent media that must be played in order","Media that contains hyperlinks"],2,"Continuous = <b>time-dependent / dynamic</b>، زي MP4 لازم يتشغل بالترتيب."),
+Q("Which of the following is an example of continuous media?",["A chart","A single image","A paragraph of text","Audio"],3,"Video, <b>Audio</b>, Animation = continuous."),
+Q("What is the core requirement of modern digital multimedia?",["Using high-resolution images only","Interactivity","Combining audio with video","Printing the content"],1,"المحاضرة بتقول إن الـ multimedia مش مجرد دمج audio و video؛ الأنظمة الديجيتال محتاجة <b>interactivity</b>."),
+Q("Interactive multimedia is when the user:",["Watches content without any control","Is given control over what information is viewed and when","Only listens to audio","Prints the content"],1,"Interactive = user has control over <b>what</b> is viewed and <b>when</b>."),
+Q("Linear multimedia is designed to be presented in a:",["Random manner","Sequential manner","User-controlled manner","Hyperlinked manner"],1,"Linear = <b>sequential</b> manner، واليوزر passive."),
+Q("Which of the following is an example of NON-linear multimedia?",["A movie","A TV commercial","A video game","A PowerPoint presentation"],2,"الـ <b>video game</b> اليوزر بيتحكم فيها. الباقي بيتعرض بالترتيب = linear."),
+Q("According to the lecture, Wikipedia is considered:",["Non-linear multimedia","Linear multimedia","Hypermedia only","Continuous media"],1,"المحاضرة كاتبة إن Wikipedia <b>linear</b> لأنها مش بتسمح بتفاعل كتير وهدفها توصيل معلومات. سؤال فخ."),
+Q("A live multimedia presentation may allow interactivity via:",["A navigation system","Interaction with the presenter or performer","Hyperlinks only","A storage device"],1,"Live → interaction with the <b>presenter/performer</b>. Recorded → <b>navigation system</b>."),
+Q("Hypertext is best defined as:",["Text which contains links to other texts","Text written in large fonts","Audio converted to text","A video with subtitles"],0,"Hypertext = text which <b>contains links to other texts</b>، ومعمول يتقري non-linearly."),
+Q("What is the best example of a hypermedia application?",["A cassette tape","The World Wide Web (WWW)","A printed book","A radio"],1,"<b>WWW</b> هو أحسن مثال، وكمان PowerPoint و PDF و Flash."),
+Q("Which of the following is a capture device?",["CD","Wireless LAN","Microphone","Cloud"],2,"Capture devices: keyboard, <b>microphone</b>, cameras, scanner, touch, sensors. CD و Cloud = storage، LAN = network.")
+],
+"3":[
+Q("The word 'graphic' refers to:",["Only photographs","Any visual representation of data","Only text documents","Sound waves"],1,"Graphic = <b>any visual representation of data</b> (drawings, photos, diagrams, maps...)."),
+Q("What is the main purpose of graphic design?",["To increase file sizes","To communicate and solve problems through visual content","To replace all text with numbers","To store data"],1,"المكتوب في السلايد: the <b>main purpose</b> is to <b>communicate and solve problems through visual content</b>."),
+Q("Which is a reason we prefer visual communication over text?",["Speed of comprehension","Longer reading time","Higher printing cost","Less engagement"],0,"الأسباب: <b>speed of comprehension</b>, simplifying complex data, boosting engagement, information retention."),
+Q("Which objective of graphic design focuses on establishing a unique and memorable identity?",["Usability","Brand Recognition","Information Clarity","Call to Action"],1,"<b>Brand Recognition</b>: unique memorable identity (name, logo, shape, voice)."),
+Q("'Presenting information in a clear and compelling way' describes:",["User Engagement","Information Clarity","Creativity","Attractiveness"],1,"ده تعريف <b>Information Clarity</b> بالنص."),
+Q("Raster graphics are composed of:",["Mathematical paths","Pixels","Vectors","Sound samples"],1,"Raster (bitmap) = <b>pixels</b>، زي الصور الفوتوغرافية."),
+Q("Which statement describes vector graphics?",["Made of pixels and blurs when enlarged","Made of mathematical lines and paths and does not lose quality when enlarged","Only used for photographs","Always saved as JPEG"],1,"Vector = <b>mathematical lines & paths</b>، و<b>no quality loss</b> عند التكبير."),
+Q("Which file format is a vector format?",["PNG","JPEG","SVG","BMP"],2,"<b>SVG</b> و AI = vector. PNG و JPEG و BMP = raster."),
+Q("What is the smallest unit of a digital image?",["Bitmap","Pixel","Vector","Frame"],1,"<b>Pixel</b> = smallest unit. الـ bitmap مجموعة pixels."),
+Q("A screen with 1920×1080 resolution has:",["1920 pixels vertically and 1080 horizontally","1920 pixels horizontally and 1080 vertically","1920 colors","1080 frames per second"],1,"الرقم الأول <b>أفقي</b> والتاني <b>رأسي</b>."),
+Q("What happens when a raster image is enlarged too much?",["It becomes sharper","Pixelation occurs","It turns into a vector","Its file becomes SVG"],1,"<b>Pixelation</b>: المربعات بتبان، مع loss of sharpness و digital artifacts."),
+Q("Why can an enlarged image look washed out or distorted?",["Because interpolation algorithms 'guess' colors between pixels","Because RGB has only one value","Because vectors are added","Because the image becomes continuous media"],0,"Digital artifacts / computational guesswork: الـ <b>interpolation algorithms</b> بتخمن الألوان."),
+Q("What is the difference between a pixel and a bitmap?",["They are the same","Pixel = one point; Bitmap = collection of pixels forming the image","Pixel = vector; Bitmap = raster","Bitmap = one point; Pixel = collection"],1,"<b>Pixel = one point</b> و <b>Bitmap = collection of many pixels</b>."),
+Q("Raster images are described as:",["Resolution-independent","Resolution-dependent","Made of curves only","Unable to show color"],1,"Raster = <b>resolution-dependent</b>؛ لما تكبر بيتغبش."),
+Q("In RGB, each color value ranges from:",["0 to 1","0 to 100","0 to 255","1 to 1000"],2,"كل قناة من <b>0 لـ 255</b>."),
+Q("RGB (255, 0, 0) represents:",["Pure green","Pure blue","Pure red","Black"],2,"Max red, no green or blue = <b>pure red</b>."),
+Q("The 'A' in RGBA stands for:",["Animation","Alpha channel (transparency)","Audio","Area"],1,"A = <b>Alpha</b> = transparency، عادةً من 0 لـ 1."),
+Q("RGBA (255, 0, 0, 0.5) means:",["Solid red","Semi-transparent red (50%)","Pure black","Invisible green"],1,"0.5 = <b>50% transparency</b>، فده أحمر نص شفاف.")
+],
+"4":[
+Q("Animation is described as a combination of:",["Art and technology","Audio and hardware","Mathematics and physics","Photography and printing"],0,"Animation is a combination of <b>art and technology</b>."),
+Q("What are the three main stages of animation design?",["Idea, Script, Voice","Pre-Production, Production, Post-Production","Storyboard, Layout, Editing","Drawing, Coloring, Printing"],1,"<b>Pre-Production → Production → Post-Production</b>."),
+Q("What is the first step in animation production?",["Storyboard","Layout","Compositing","The Idea"],3,"<b>The Idea</b>: الفكرة والهدف والجمهور والقصة قبل أي تصميم."),
+Q("A script includes all of the following EXCEPT:",["Dialogue between characters","Actions and scenes","Instructions for directors (camera moves, emotions)","The final rendered colors of each frame"],3,"السكريبت = dialogue + actions/scenes + instructions. الألوان النهائية بتتحدد في Design / Production."),
+Q("When is voice recording usually done?",["After animation is finished","After the script and before animation","During compositing","Before the idea"],1,"<b>After the script and before animation</b>."),
+Q("Why is voice recording done before animation?",["To save storage space","So animators can match characters' lip movements to the recorded voices","To choose background colors","To test the microphone"],1,"عشان الـ <b>lip sync</b>: يطابقوا حركة الشفايف على الصوت."),
+Q("Which stage produces the first visual image of the work after the script?",["Design and Conceptual Art","Compositing","Background","Editing"],0,"<b>Design & Conceptual Art</b>: الشخصيات والـ style والألوان والـ mood."),
+Q("'Translating the scenario from words to images' describes:",["Layout","Storyboard","Script","Animatic"],1,"<b>Storyboard</b> = from words to images."),
+Q("An animatic is:",["A 3D model","A timed sequence of storyboard images with sound and music","The final rendered film","A type of stop motion"],1,"Animatic = <b>timed sequence of storyboard images + sound & music</b>، بين الـ storyboard والـ final animation."),
+Q("Which stage defines camera position and angle, placement of characters, and size of each element?",["Script","Layout","Idea","Voice recording"],1,"<b>Layout</b> = detailed design of each shot."),
+Q("Storyboard vs Layout: which is correct?",["Storyboard = detailed execution; Layout = idea","Storyboard = idea and sequence; Layout = detailed execution of each shot","They are the same stage","Layout comes before the script"],1,"<b>Storyboard = idea & sequence</b>، <b>Layout = composition + camera + perspective</b>."),
+Q("What is the first stage of the actual production of the final work?",["Background","Script","Storyboard","Editing"],0,"السلايد: <b>Background</b> is the first stage of the actual production process."),
+Q("Which techniques are used in character animation to create smooth movement?",["Frame-by-frame or digital tweening","Scanning and printing","Compression and streaming","Hyperlinking"],0,"<b>Frame-by-frame</b> أو <b>digital tweening</b>."),
+Q("What is the final stage in animation production?",["Layout","Compositing & Editing","Storyboard","Idea"],1,"<b>Compositing & Editing</b> = final stage."),
+Q("Compositing means:",["Writing the dialogue","Combining all visual elements (characters, backgrounds, effects, lighting) into one scene","Recording voices","Drawing the storyboard"],1,"Compositing = <b>combining all visual elements into one complete scene</b>. Editing = ترتيب اللقطات والتوقيت والصوت."),
+Q("In which type of animation does the artist draw each frame by hand?",["3D","Traditional","Motion Graphics","Whiteboard"],1,"<b>Traditional</b> زي Disney القديم."),
+Q("'The Simpsons' and 'SpongeBob' are examples of:",["3D animation","Stop motion","2D animation","Typography animation"],2,"<b>2D</b>: زي التقليدي بس على الكمبيوتر."),
+Q("'Toy Story' and 'Frozen' are examples of:",["3D animation","2D animation","Whiteboard animation","Traditional animation"],0,"<b>3D</b>: digital space with depth and realism."),
+Q("'Wallace and Gromit', where clay figures are moved and photographed, is:",["Motion graphics","Stop motion","Typography","2D"],1,"<b>Stop motion</b> (Claymation)."),
+Q("Which type of animation is about bringing text to life?",["Typography animation","Whiteboard animation","3D animation","Traditional animation"],0,"<b>Typography</b>: fonts, colors, movement."),
+Q("Explainer videos that look like someone drawing on a board are:",["Stop motion","Whiteboard animation","3D animation","Motion graphics"],1,"<b>Whiteboard animation</b>."),
+Q("Which animation type conveys information, often without characters?",["Motion Graphics","Traditional","Stop Motion","3D"],0,"<b>Motion graphics</b>: الإعلانات واليوتيوب، often without characters.")
+],
+"5":[
+Q("How many uses of animation across industries are listed in the lecture?",["5","10","15","20"],2,"<b>15 uses</b>."),
+Q("Coca-Cola 'Happiness Factory' is an example of animation in:",["Medicine","Advertising","Architecture","Science"],1,"<b>Advertising</b>، مع Cadbury و Heinz."),
+Q("Offering virtual walkthroughs of buildings before construction is a use of animation in:",["Architecture","Fashion","Retail","Gaming"],0,"<b>Architecture</b>: virtual walkthroughs, problem detection, real estate marketing."),
+Q("Simulating system performance and visualizing prototypes before production belongs to:",["Engineering and Manufacturing","Tourism","Journalism","Event Planning"],0,"<b>Engineering & Manufacturing</b>: saves time, reduces cost, improves accuracy."),
+Q("Practicing flying planes or performing surgeries safely without real-world risks is:",["Entertainment","Training and Simulation","Retail","Advertising"],1,"<b>Training & Simulation</b>. الكلمة المفتاحية: without real-world risks."),
+Q("Visually explaining complex anatomy and procedures is animation in:",["Medical Industry","Fashion Design","Event Planning","Gaming"],0,"<b>Medical</b>: 3D visuals للدكاترة والطلبة والمرضى."),
+Q("Showcasing fabric movement on digital runways is animation in:",["Retail","Fashion Design","Architecture","Science"],1,"<b>Fashion design</b>: digital runways."),
+Q("3D and AI-generated animations that let customers explore items from all angles are used in:",["Retail","Radio","Journalism","Medicine"],0,"<b>Retail</b>: personalized shopping."),
+Q("Creating eye-catching mascots and logos to build brand recognition is animation in:",["Marketing and Branding","Training","Architecture","Medical"],0,"<b>Marketing & Branding</b>."),
+Q("Turning data about molecules or black holes into visuals is animation in:",["Science and Research","Tourism","Fashion","Advertising"],0,"<b>Science & Research</b>."),
+Q("Hotels showcasing rooms and services to encourage bookings is animation in:",["Tourism and Hospitality","Event Planning","Engineering","Education"],0,"<b>Tourism & Hospitality</b>."),
+Q("Animation that makes learning engaging and supports self-paced learning is used in:",["Education","Gaming","Retail","Fashion"],0,"<b>Education</b>."),
+Q("What is the first Egyptian cartoon film?",["A Bug's Life","Mishmish Effendi","Toy Story","Frozen"],1,"<b>Mishmish Effendi</b> (مشمش أفندي)."),
+Q("'A Bug's Life' was produced by:",["Disney Traditional Studio","Pixar","DreamWorks","Aardman"],1,"<b>Pixar</b>، سنة 1998، عن حياة النمل.")
+],
+"6":[
+Q("Video is a sequence of still frames usually shown at:",["1 to 5 fps","24 to 30 fps","100 to 200 fps","500 fps"],1,"Usually <b>24–30 fps</b>."),
+Q("Which of the following is NOT a component of video?",["Sequential frames (image)","Audio","Texts and titles","Compiler source code"],3,"المكونات: image, audio, texts/titles, visual effects, speed/pacing. <b>Source code</b> مش منهم."),
+Q("Why is video an effective communication tool?",["It uses only text","It appeals to more than one sense: sight and hearing","It has no sound","It is always interactive"],1,"بيخاطب <b>sight and hearing</b>، فبيزود التفاعل والفهم."),
+Q("In which role of video can the user choose the path or outcome?",["Artistic element","Interaction supporter","Communication tool","Compression tool"],1,"<b>Interaction supporter</b>: interactive videos."),
+Q("Clips filmed by a camera are called:",["Animated video","Real video","Interactive video","Motion graphics"],1,"<b>Real video</b>."),
+Q("Which type of video allows the user to control the display or select a path?",["Real video","Interactive video","Animated video","Linear video"],1,"<b>Interactive video</b>."),
+Q("720p, 1080p and 4K are examples of:",["Frame rate","Resolution","Compression","Audio quality"],1,"<b>Resolution</b>."),
+Q("Frame rate refers to:",["The size of the video file","The speed at which images are displayed","The number of colors","The screen size"],1,"Frame rate = <b>speed at which images are displayed</b>."),
+Q("What is the purpose of video compression?",["Increase image quality","Reduce the size of files","Add subtitles","Change resolution to 4K"],1,"Compression = <b>reduce file size</b>. Formats: MP4, AVI, MOV."),
+Q("What type of art is 'Species in Pieces'?",["Pixel art","Low Poly Art","Stop motion","Typography"],1,"<b>Low Poly Art</b> (interactive web art / code-based)."),
+Q("Google Earth Web, Spotify Wrapped and Patatap are examples of:",["Interactive websites","Radio","Television","Film"],0,"<b>Interactive websites</b>: two-way communication."),
+Q("Video-sharing sites like YouTube exemplify:",["Radio","Online videos","Digital art","Print media"],1,"<b>Online videos</b>."),
+Q("Minecraft: Education Edition and Kahoot are examples of:",["Educational games","Racing games","RPG games","TV programs"],0,"<b>Educational games</b>."),
+Q("Coursera, Moodle and Khan Academy are examples of:",["Social media","E-learning platforms","Video games","Radio stations"],1,"<b>E-learning platforms</b>."),
+Q("BBC's 'Inside the Human Body' uses 3D animation as an example of:",["Film in education","Radio","Retail","Advergames"],0,"<b>Film</b> (educational science films)."),
+Q("Although mostly sound, radio also uses:",["3D graphics","Voice acting, sound effects, music and scripted dialogue","Video cutscenes","Touch screens"],1,"Radio = <b>voice acting, sound effects, music, scripted dialogue</b>."),
+Q("AR ads and Advergames belong to which category?",["Interactive marketing","Radio","Television","Film"],0,"<b>Interactive marketing</b> تحت Advertising & Marketing."),
+Q("Video captures attention more than:",["Text and still images","Live performances","3D games","Virtual reality"],0,"It captures attention more than <b>text and still images</b>.")
+],
+"design":[
+Q("What is the simplest visual element in design?",["Shape","The point or dot","Texture","Line"],1,"<b>Point/dot</b> = أبسط عنصر."),
+Q("A point contains:",["Length only","Width and length","No length, width, or volume","Volume only"],2,"<b>No length, width, or volume</b>."),
+Q("A line is defined as:",["The path of a point moving through space","A closed area","The surface quality of an object","The space around objects"],0,"<b>Path of a point moving through space</b>."),
+Q("'The perceived surface quality of an object' defines:",["Line","Texture","Shape","Balance"],1,"ده تعريف <b>Texture</b>."),
+Q("Straight lines typically convey:",["Chaos","Stability","Randomness","Speed only"],1,"<b>Stability</b>."),
+Q("A shape is defined as:",["Closed lines or areas with defined boundaries","A moving point","Light intensity","Empty margins"],0,"<b>Closed lines or areas with defined boundaries</b>."),
+Q("Balance in design is:",["The contrast of colors","The distribution of visual weight within a composition","Repeating shapes","Empty space"],1,"<b>Distribution of visual weight</b>."),
+Q("Which balance gives a dynamic and interesting visual through uneven distribution?",["Symmetrical","Asymmetrical","Radial","Mirror"],1,"<b>Asymmetrical</b>."),
+Q("Which balance creates harmony and stability through equal weight on both sides?",["Symmetrical","Asymmetrical","Radial","Random"],0,"<b>Symmetrical</b>."),
+Q("In which balance do elements radiate from a central point?",["Radial","Symmetrical","Asymmetrical","Linear"],0,"<b>Radial</b>."),
+Q("Contrast involves:",["Identical sizes","Differences between elements, like light vs dark and large vs small","Uniform spacing","Grouping items"],1,"<b>Differences</b> between elements."),
+Q("Emphasis in graphic design means:",["Equal weight for everything","Creating a focal point to draw attention to the most important part","Large margins","Repeating shapes"],1,"<b>Focal point</b>."),
+Q("Proportion refers to:",["Color codes","The relationship in size between different elements","Line spacing","Scanning speed"],1,"<b>Relationship in size</b>.")
+]};
+
+/* challenge quiz */
+const ORIGINAL=[
+Q("What is defined as the simplest visual element that can be employed in design?",["The dot or point","The line connecting two points","Typography and letterforms","Closed geometric shape"],0,"الـ <b>point/dot</b> هو أبسط عنصر مرئي. الـ line نفسه مكون من حركة point."),
+Q("What is a point characterized by in terms of its dimensions?",["It has variable width and dashed styling.","It contains no length, width, or volume.","It has complete three-dimensional volume.","It has definite length and width but no depth."],1,"الـ point ملوش أي أبعاد: <b>no length, width, or volume</b>. الاختيار A بيوصف line، و D بيوصف shape."),
+Q("How is a line defined in the elements of design?",["The area around, above, or within objects.","Closed area with completely defined boundaries.","The path of a point moving through space.","The perceived surface quality of an object."],2,"Line = <b>path of a point moving through space</b>. A = Space، B = Shape، D = Texture."),
+Q("Which objective of graphic design focuses specifically on guiding user interaction, such as clicking a button?",["Information clarity","User Engagement","Brand Recognition","Call to Action (CTA)"],3,"محاضرة 3: <b>CTA</b> = encouraging desired responses, such as clicking a button or making a purchase."),
+Q("What emotional connotation do straight lines typically convey in design?",["Stability","Surface roughness","Randomness and chaos","Value"],0,"الخطوط المستقيمة = <b>stability</b> ونظام. الـ chaos بييجي من zigzag، والـ roughness ده texture."),
+Q("Which of the following represents valid line endings mentioned in the lecture?",["Geometric, organic, and abstract","Blunt, curved, and ragged","Solid, dashed, and dotted","Primary, secondary, and tertiary"],2,"المذكور في المحاضرة: <b>solid, dashed, dotted</b>. A دي أنواع shapes، و D أنواع ألوان."),
+Q("How is a shape defined in graphic design?",["The perceived surface quality of an object.","The hue, value, and intensity of light.","Closed lines or areas with defined boundaries.","The path of a single point moving in one direction."],2,"Shape = <b>closed lines or areas with defined boundaries</b>. A = texture، B = color، D = line."),
+Q("What is the first step/stage in animation production?",["Storyboard","Layout","Compositing","The Idea"],3,"محاضرة 4: <b>The Idea</b> هي أول خطوة في Pre-Production. Compositing آخر مرحلة."),
+Q("Why is voice recording usually done after the script and before animation?",["So animators can match characters' lip movements to the recorded voices","To save computer storage space","To determine the background colors of the scene","To test microphone audio frequencies"],0,"محاضرة 4 بالنص: so animators can <b>match the characters' lip movements</b> to the recorded voices."),
+Q("How are the basic design principles described in relation to design work?",["Complex mathematical formulas used only in architecture.","Fundamental guidelines that ensure visual compositions are organized, effective, and aesthetically pleasing.","Random suggestions that have no impact on the final visual quality.","Strict legal regulations that must be followed to avoid fines."],1,"Design principles = <b>fundamental guidelines</b> that make compositions organized, effective, and aesthetically pleasing."),
+Q("What is the definition of 'Balance' in graphic design?",["The contrast between light and dark colors.","The repeating pattern of geometric shapes.","The distribution of visual weight within a composition.","The exact measure of whitespace surrounding text blocks."],2,"Balance = <b>distribution of visual weight</b>. A = contrast، B = pattern/repetition."),
+Q("What does Symmetrical Balance create in a composition?",["Extreme color contrast and stark separation.","A radial dispersion of elements from a central point.","High dynamic tension and chaotic movement.","Harmony and stability through equal visual weight on both sides."],3,"Symmetrical = <b>equal visual weight on both sides → harmony & stability</b>. B ده radial."),
+Q("What is the characteristic feature of Asymmetrical Balance?",["Uneven distribution of elements that creates a dynamic and interesting visual.","Elements radiating outward from a single focal center.","Complete lack of any visual weight or composition structure.","Perfect mirror reflection across a central vertical axis."],0,"Asymmetrical = <b>uneven distribution → dynamic & interesting</b>. D ده symmetrical، و B ده radial."),
+Q("How are elements arranged in Radial Balance?",["Elements form a straight horizontal line across the page.","Elements radiate from a central point, often in circular or straight lines.","Elements are placed randomly across all four corners.","Elements are aligned strictly along the left margin."],1,"Radial = <b>radiate from a central point</b>."),
+Q("What does the principle of 'Contrast' involve?",["The uniform spacing between all letters in a paragraph.","The exact duplication of shapes to form seamless patterns.","The differences between elements, such as light vs. dark, large vs. small.","The grouping of related items to improve readability."],2,"Contrast = <b>differences</b> between elements. D ده proximity، و B ده repetition."),
+Q("What is the primary effect of using contrast effectively in a design?",["Forces every element to have identical dimensions.","Creates a monotone and uniform visual appearance.","Removes all whitespace from the composition.","Adds visual interest and draws attention to the focal point."],3,"Contrast <b>adds visual interest and draws attention to the focal point</b>. A و B عكس الـ contrast."),
+Q("How can contrast be achieved for text elements?",["By using different styles.","By removing all punctuation marks from the copy.","By keeping every single word in the exact same font size.","By aligning all paragraphs to the center only."],0,"<b>Different styles</b>: bold vs regular، كبير vs صغير، ألوان مختلفة. C عكس الـ contrast."),
+Q("What is the definition of 'Emphasis' in graphic design?",["Placing all design elements with equal visual weight.","Creating a focal point to draw the viewer's attention to the most important part.","Repeating the exact same geometric shape across the background.","Leaving large amounts of empty margins around a page."],1,"Emphasis = <b>creating a focal point</b>."),
+Q("What are the two main things that animation successfully combines?",["Art and technology","Audio and hardware","Photography and printing","Mathematics and physics"],0,"محاضرة 4: animation is a combination of <b>art and technology</b>."),
+Q("What does 'Proportion' refer to in graphic design?",["The exact color codes used in a brand palette.","The speed at which a viewer scans a poster.","The distance between two adjacent lines of text.","The relationship in size between different elements of the design."],3,"Proportion = <b>relationship in size</b> between elements. C ده line spacing (leading).")
+];
+
+/* mock midterm */
+const TF=["True","False"];
+const MOCK=[
+Q("Multimedia is an interdisciplinary application-oriented technology that capitalizes on:",["The speed of computers","The multi-sensory nature of humans","Printed media","Analog signals"],1,"Lec 2 Def 2: <b>multi-sensory nature of humans</b>.","PART A · MCQ"),
+Q("Which of the following is a time-dependent medium?",["Text","Chart","Audio","Image"],2,"Time-dependent = continuous: video, <b>audio</b>, animation.","PART A · MCQ"),
+Q("A YouTube video is classified as:",["Non-linear multimedia","Linear multimedia","Hypertext","Discrete media"],1,"Lec 2: YouTube <b>video</b> = linear (الـ channel هو اللي non-linear).","PART A · MCQ"),
+Q("In which type of multimedia is the user's participation very important?",["Linear","Non-linear","Discrete","Analog"],1,"<b>Non-linear</b>: user in control.","PART A · MCQ"),
+Q("Hypermedia differs from hypertext because it:",["Contains no links","Can include graphics, images, sound and video","Is printed on paper","Is always linear"],1,"Hypermedia <b>not constrained to text</b>: graphics, images, sound, video.","PART A · MCQ"),
+Q("Which of the following is a storage device in a multimedia system?",["Scanner","Wireless MAN","Cloud","Microphone"],2,"Storage: CD, DVD, flash, <b>cloud</b>.","PART A · MCQ"),
+Q("Which of the following is TRUE about vector graphics?",["Composed of pixels","Lose quality when enlarged","Do not lose quality when enlarged","Common formats are PNG and JPEG"],2,"Vector = math paths → <b>no quality loss</b>.","PART A · MCQ"),
+Q("A logo designed in Adobe Illustrator is best saved as:",["JPEG","BMP","SVG / AI","GIF"],2,"Logos = vector: <b>SVG / AI</b>.","PART A · MCQ"),
+Q("Each pixel in a digital image represents:",["A sound sample","A color value (RGB or RGBA)","A frame","A hyperlink"],1,"Each pixel = <b>color value</b>.","PART A · MCQ"),
+Q("Which statement is correct?",["RGB = Color + Transparency","RGBA = Color only","RGB = Color only; RGBA = Color + Transparency","RGB and RGBA are vector formats"],2,"Summary slide: <b>RGB = color only, RGBA = color + transparency</b>.","PART A · MCQ"),
+Q("'Creating designs that attract and hold attention' is the objective of:",["User Engagement","Brand Recognition","Usability","Information Clarity"],0,"<b>User Engagement</b>.","PART A · MCQ"),
+Q("Which stage lies between the storyboard and the final animation?",["Script","Animatic","Idea","Compositing"],1,"<b>Animatic</b>.","PART A · MCQ"),
+Q("Which stage belongs to Post-Production?",["Script","Storyboard","Compositing & Editing","Voice recording"],2,"<b>Compositing & Editing</b> = final stage.","PART A · MCQ"),
+Q("It is best to record the audio before creating the storyboard in order to:",["Reduce file size","Accurately convey the character's emotions","Choose the 3D software","Skip the layout stage"],1,"السلايد: record audio before storyboard <b>to accurately convey the character's emotions</b>.","PART A · MCQ"),
+Q("Which stage defines foreground and background element sizes and camera movement direction?",["Layout","Script","Idea","Voice recording"],0,"<b>Layout</b>.","PART A · MCQ"),
+Q("Moving clay figures a tiny bit at a time and photographing each movement is:",["2D animation","Stop motion animation","Whiteboard animation","Motion graphics"],1,"<b>Stop motion</b>.","PART A · MCQ"),
+Q("Classic Disney movies where every frame is hand-drawn are:",["Traditional animation","3D animation","Typography animation","Motion graphics"],0,"<b>Traditional</b>.","PART A · MCQ"),
+Q("Animation that helps engineers reveal issues early and reduce costs is used in:",["Fashion","Engineering and Manufacturing","Tourism","Journalism"],1,"<b>Engineering & Manufacturing</b>.","PART A · MCQ"),
+Q("Animation that brings news stories to life through visual storytelling belongs to:",["Storytelling and Journalism","Retail","Gaming","Architecture"],0,"<b>Storytelling & Journalism</b>.","PART A · MCQ"),
+Q("Video is usually displayed at:",["24 or 30 frames per second","5 frames per second","1000 frames per second","2 frames per second"],0,"<b>24 or 30 fps</b>.","PART A · MCQ"),
+Q("MP4, AVI and MOV are related to which video quality feature?",["Resolution","Frame rate","Video compression","Lighting"],2,"<b>Compression</b> to reduce file size.","PART A · MCQ"),
+Q("Video that relies on animation and motion graphics is:",["Real video","Animated video","Interactive video","Radio"],1,"<b>Animated video</b>.","PART A · MCQ"),
+Q("Need for Speed and FIFA are examples of which kind of video games?",["Educational","Racing and Sports","RPG","Action and Adventure"],1,"<b>Racing & Sports</b>.","PART A · MCQ"),
+Q("Interactive websites create:",["One-way communication","Two-way communication between sites and visitors","No communication","Printed output"],1,"<b>Two-way communication</b>.","PART A · MCQ"),
+Q("Symmetrical balance creates:",["Chaos","Harmony and stability","Radial dispersion","Extreme contrast"],1,"<b>Harmony & stability</b>.","PART A · MCQ"),
+Q("Animation refers to the rapid display of static images, usually at 24 fps.",TF,0,"<b>True</b>. Lec 2.","PART B · TRUE / FALSE"),
+Q("Raster images keep their quality when enlarged.",TF,1,"<b>False</b>. Raster بيحصله pixelation، الـ vector هو اللي مش بيخسر.","PART B · TRUE / FALSE"),
+Q("According to the lecture, Wikipedia is an example of linear multimedia.",TF,0,"<b>True</b>. سؤال فخ متكرر.","PART B · TRUE / FALSE"),
+Q("Voice recording is usually done after the animation is finished.",TF,1,"<b>False</b>. بيتعمل after script, before animation.","PART B · TRUE / FALSE"),
+Q("In RGB, each value ranges from 0 to 100.",TF,1,"<b>False</b>. من 0 لـ 255.","PART B · TRUE / FALSE"),
+Q("Text, images and charts are discrete media.",TF,0,"<b>True</b>.","PART B · TRUE / FALSE"),
+Q("Background is the first stage of the actual production process.",TF,0,"<b>True</b>. Lec 4.","PART B · TRUE / FALSE"),
+Q("Mishmish Effendi is the first Egyptian cartoon film.",TF,0,"<b>True</b>. Lec 5.","PART B · TRUE / FALSE"),
+Q("Video appeals only to the sense of sight.",TF,1,"<b>False</b>. sight <b>and</b> hearing.","PART B · TRUE / FALSE"),
+Q("A pixel is a collection of many bitmaps.",TF,1,"<b>False</b>. العكس: bitmap = collection of pixels.","PART B · TRUE / FALSE")
+];
+
+/* ============ registry ============ */
+const ORDER=["2","3","4","5","6","design"];
+const QUIZZES={};
+ORDER.forEach(k=>QUIZZES["quiz-"+k]={title:`Quiz: ${LECS[k].title}`,ar:k==="design"?"كويز عناصر ومبادئ التصميم":`كويز محاضرة ${k}`,qs:QUIZ[k],back:"lec-"+k});
+QUIZZES["challenge"]={title:"Challenge Quiz",ar:"كويز شامل",qs:ORIGINAL,back:"home",hdr:"Choose the best answer. Select only one option for each question."};
+QUIZZES["mock"]={title:"Mock Midterm",ar:"امتحان ميد تجريبي",qs:MOCK,back:"home",modes:true,hdr:"Midterm Mock · Lectures 2–6 + Design Principles · 25 MCQ + 10 True/False · Time: 40 minutes"};
+
+/* ============ nav ============ */
+const NAV=[["home","Map"],...ORDER.map(k=>["lec-"+k,k==="design"?"Bonus":"L"+k]),["challenge","Challenge"],["mock","Midterm"]];
+const navEl=document.getElementById("nav");
+navEl.innerHTML=NAV.map(([h,l])=>`<a href="${U(h)}" data-h="${h}">${l}</a>`).join("");
+
+const app=document.getElementById("app");
+function bestOf(id){const b=store.get("best:"+id,null);return b?`BEST ${b.s}/${b.t}`:"NOT PLAYED"}
+
+/* ============ views ============ */
+function viewHome(){
+  app.innerHTML=`
+  <section class="hero">
+    <div class="eyebrow" dir="ltr">MMD 307 · MULTIMEDIA PROGRAMMING · BY <a class="me" href="https://dev.uniskills.pro/" target="_blank" rel="noopener">AHMED SALMAN</a></div>
+    <h1 dir="ltr">PRESS <span>START</span><br>TO PASS THE MIDTERM</h1>
+    <p>شرح وحل محاضرات 2 لـ 6 بالعربي والمصطلحات إنجليزي، كويز على كل محاضرة، كويز شامل محلول ومشروح، وامتحان ميد تجريبي. اختار level وابدأ.</p>
+    <div class="stage" id="stg" dir="ltr"><div class="block q" style="left:30%">?</div><div class="block q" style="left:62%">?</div><canvas id="walker" width="48" height="72" style="width:64px;height:96px;left:0"></canvas></div>
+  </section>
+  <div class="map">
+  ${ORDER.map(k=>{const L=LECS[k];return `<article class="lvl px ${L.bonus?"bonus":""}">
+    <span class="no" dir="ltr">${L.bonus?"BONUS":"LEVEL "+k}</span>
+    <h3 dir="ltr">${L.title}</h3><p>${L.ar}. <span dir="ltr">${L.sub}</span></p>
+    <div class="row"><a class="btn" href="${U('lec-'+k)}">LEARN</a><a class="btn g" href="${U('quiz-'+k)}">QUIZ</a><span class="best" dir="ltr">${bestOf("quiz-"+k)}</span></div>
+  </article>`}).join("")}
+  <article class="lvl px boss"><span class="no" dir="ltr">BOSS 1</span><h3 dir="ltr">Challenge Quiz</h3><p>20 سؤال على التصميم والأنيميشن، محلولين ومشروحين سؤال سؤال.</p>
+    <div class="row"><a class="btn" href="${U('challenge')}">PLAY</a><span class="best" dir="ltr">${bestOf("challenge")}</span></div></article>
+  <article class="lvl px boss"><span class="no" dir="ltr">FINAL BOSS</span><h3 dir="ltr">Mock Midterm</h3><p>35 سؤال على كل المحاضرات: Practice (الإجابة بعد كل سؤال) أو Exam (الإجابات في الآخر).</p>
+    <div class="row"><a class="btn" href="${U('mock')}">PLAY</a><span class="best" dir="ltr">${bestOf("mock")}</span></div></article>
+  </div>
+`;
+  walker();
+  say("أهلاً! أنا أحمد وهكون معاك طول المذاكرة. ابدأ بـ Level 2، وكل ما تجاوب صح تاخد XP.","wave");
+}
+let walkRAF=0;
+function walker(){cancelAnimationFrame(walkRAF);const cv=document.getElementById("walker"),stg=document.getElementById("stg");if(!cv)return;
+  let x=0,dir=1,t=0;const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const step=()=>{if(!document.body.contains(cv))return;t++;const W=stg.clientWidth-64;x+=dir*1.4;if(x>W||x<0){dir*=-1}
+    cv.style.left=x+"px";cv.style.transform=dir<0?"scaleX(-1)":"none";
+    const jumpZone=[.30,.62].some(p=>Math.abs(x+32-(stg.clientWidth*p+16))<22);
+    cv.style.bottom=jumpZone?"22px":"8px";
+    if(t%4===0)drawPose(cv,jumpZone?"cheer":(Math.floor(t/12)%2?"walk1":"walk2"));
+    walkRAF=requestAnimationFrame(step)};
+  if(reduce){drawPose(cv,"idle");cv.style.left="20px"}else step();
+}
+
+function viewLesson(k){
+  const L=LECS[k];
+  app.innerHTML=`<section class="page-head"><span class="eyebrow" dir="ltr">${L.bonus?"BONUS LEVEL":"LEVEL "+k} · ${L.sub}</span>
+  <h1 dir="ltr">${L.title}</h1><p style="color:var(--muted)">${L.ar}</p></section>
+  <div class="lesson fade">${L.html}
+  <section class="sec px"><h2>Ready?</h2><p>خلصت الشرح؟ حل الكويز دلوقتي والإجابة هتظهر بعد كل سؤال مع الشرح.</p>
+  <div class="cta"><a class="btn g" href="${U('quiz-'+k)}">START QUIZ</a>${next(k)}</div></section></div>`;
+  window.scrollTo(0,0); say(L.hello,"think"); initDemos();
+}
+function next(k){const i=ORDER.indexOf(k);const n=ORDER[i+1];return n?`<a class="btn o" href="${U('lec-'+n)}">NEXT LEVEL</a>`:`<a class="btn o" href="${U('mock')}">MOCK MIDTERM</a>`}
+
+/* demos */
+function initDemos(){
+  const z=document.getElementById("zoom");
+  if(z){const rc=document.getElementById("rast"),rx=rc.getContext("2d"),off=document.createElement("canvas");off.width=off.height=16;
+    const o=off.getContext("2d");for(let y=0;y<16;y++)for(let x=0;x<16;x++){const d=Math.hypot(x+.5-8,y+.5-8);if(d<5.6){o.fillStyle="#7c88ff";o.fillRect(x,y,1,1)}}
+    const paint=()=>{const s=+z.value;document.getElementById("zv").textContent=s+"x";rx.imageSmoothingEnabled=false;rx.fillStyle="#0a0d16";rx.fillRect(0,0,160,160);
+      const size=160*s;rx.drawImage(off,80-size/2,80-size/2,size,size);
+      document.getElementById("vect").setAttribute("viewBox",`${80-80/s} ${80-80/s} ${160/s} ${160/s}`)};
+    z.oninput=paint;paint()}
+  const cr=document.getElementById("cr");
+  if(cr){const ids=["cr","cg","cb","ca"];const upd=()=>{const [r,g,b,a]=ids.map(i=>+document.getElementById(i).value);const A=(a/100).toFixed(2).replace(/\.?0+$/,"")||"0";
+      ids.forEach((i,j)=>document.getElementById(i+"v").textContent=j<3?[r,g,b][j]:A);
+      const css=`rgba(${r}, ${g}, ${b}, ${A})`;document.getElementById("sw").style.background=css;document.getElementById("cssout").textContent=css};
+    ids.forEach(i=>document.getElementById(i).oninput=upd);upd()}
+  const fc=document.getElementById("fps");
+  if(fc){const x=fc.getContext("2d");const rates=[15,24,30,60];const t0=performance.now();
+    const loop=now=>{if(!document.body.contains(fc))return;x.fillStyle="#0a0d16";x.fillRect(0,0,320,120);
+      rates.forEach((r,i)=>{const t=(now-t0)/1000;const q=Math.floor(t*r)/r;const p=(q*0.6)%2;const pos=p<1?p:2-p;const y=8+i*28;
+        x.fillStyle="#262d45";x.fillRect(56,y+10,256,2);x.fillStyle=["#ff5d73","#ffcc33","#6ec1ff","#4de3b0"][i];x.fillRect(56+Math.round(pos*240),y+3,16,16);
+        x.font="12px JetBrains Mono, monospace";x.fillText(r+" fps",4,y+16)});requestAnimationFrame(loop)};
+    requestAnimationFrame(loop)}
+}
+
+/* quiz engine */
+let S=null;
+function viewQuiz(id){
+  const Z=QUIZZES[id];
+  S={id,Z,i:0,ans:Array(Z.qs.length).fill(null),mode:"practice",done:false};
+  renderQuiz(); window.scrollTo(0,0);
+  say(id==="mock"?"اختار Practice لو عايز الإجابة بعد كل سؤال، أو Exam لو عايز تختبر نفسك بجد.":id==="challenge"?"كويز شامل. جاوب وشوف الشرح بعد كل سؤال.":"يلا بينا! جاوب والإجابة الصح هتظهر على طول.","think");
+}
+function renderQuiz(){
+  const {Z,i,ans,mode}=S;const n=Z.qs.length;
+  if(S.done)return renderResult();
+  const q=Z.qs[i];const a=ans[i];const answered=a!==null;const reveal=answered&&mode==="practice";
+  const done=ans.filter(x=>x!==null).length;
+  app.innerHTML=`<section class="page-head"><span class="eyebrow" dir="ltr">${Z.title}</span><h1 dir="ltr" style="font-size:clamp(16px,3vw,22px)">${Z.ar}</h1>
+  ${Z.hdr?`<p class="ltr" style="color:var(--muted);font-size:14px">${Z.hdr}</p>`:""}</section>
+  <div class="qwrap">
+   <div class="qtop" dir="ltr">
+     ${Z.modes?`<div class="modes"><button class="btn o" id="mP" aria-pressed="${mode==="practice"}">PRACTICE</button><button class="btn o" id="mE" aria-pressed="${mode==="exam"}">EXAM</button></div>`:""}
+     <div class="hpbar" aria-hidden="true"><i style="width:${done/n*100}%"></i></div>
+     <span class="qcount">Q ${i+1}/${n}</span>
+     <button class="btn b" id="keyB">ANSWER KEY</button>
+   </div>
+   <article class="qcard px fade">
+     ${q.sec?`<div class="qsec">${q.sec}</div>`:""}
+     <div class="qtext"><span class="n">${i+1}.</span>${q.q}</div>
+     <div class="opts">${q.o.map((o,j)=>{let c="";if(reveal){if(j===q.a)c="ok";else if(j===a)c="bad"}else if(answered&&j===a)c="pick";
+       return `<button class="opt ${c}" data-j="${j}" ${reveal?"disabled":""}><span class="L">${"ABCD"[j]}</span><span>${o}</span></button>`}).join("")}</div>
+     ${reveal?`<div class="exp ${a===q.a?"":"wr"}"><span class="h">${a===q.a?"CORRECT +10 XP":"WRONG · ANSWER: "+"ABCD"[q.a]}</span>${q.e}</div>`:""}
+   </article>
+   <div class="qnav" dir="ltr">
+     <button class="btn o" id="prev" ${i===0?"disabled":""}>PREV</button>
+     ${i<n-1?`<button class="btn" id="nxt">NEXT</button>`:`<button class="btn g" id="fin">FINISH</button>`}
+   </div>
+   <div><a class="btn o" href="${U(Z.back)}">BACK</a></div>
+   <details class="allq"><summary>كل الأسئلة بالإجابات والشرح (${n})</summary><div class="key">${keyList(Z,Array(n).fill(null),false)}</div></details>
+  </div>`;
+  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>pick(+b.dataset.j));
+  const g=id=>document.getElementById(id);
+  g("prev").onclick=()=>{S.i--;renderQuiz()};
+  if(g("nxt"))g("nxt").onclick=()=>{S.i++;renderQuiz()};
+  if(g("fin"))g("fin").onclick=()=>{S.done=true;renderQuiz();window.scrollTo(0,0)};
+  g("keyB").onclick=()=>renderKey(false);
+  if(Z.modes){g("mP").onclick=()=>{S.mode="practice";renderQuiz()};g("mE").onclick=()=>{S.mode="exam";S.ans.fill(null);S.i=0;renderQuiz();say("وضع الامتحان: مفيش إجابات لحد ما تدوس FINISH. بالتوفيق!","think")}}
+}
+function pick(j){
+  const q=S.Z.qs[S.i];
+  if(S.mode==="practice"){if(S.ans[S.i]!==null)return;S.ans[S.i]=j;
+    if(j===q.a){addXP(10);const m=["صح! كمّل كده.","برافو، +10 XP.","إجابة بطل!","تمام كده، اللي بعده."];say(m[Math.floor(Math.random()*m.length)],"happy")}
+    else say(`لأ، الإجابة الصح <b>${"ABCD"[q.a]}</b>. اقرا الشرح تحت.`,"sad");
+  }else{S.ans[S.i]=j}
+  renderQuiz();
+  const exp=app.querySelector(".exp");if(exp)exp.scrollIntoView({block:"nearest",behavior:"smooth"});
+}
+function renderResult(){
+  const {Z,ans}=S;const n=Z.qs.length;const s=Z.qs.reduce((c,q,i)=>c+(ans[i]===q.a),0);const p=s/n;
+  if(S.mode==="exam")addXP(s*10);
+  const rank=p>=.9?"S":p>=.75?"A":p>=.6?"B":p>=.5?"C":"D";
+  const prev=store.get("best:"+S.id,null);if(!prev||s>prev.s)store.set("best:"+S.id,{s,t:n});
+  app.innerHTML=`<section class="page-head"><span class="eyebrow" dir="ltr">${Z.title} · RESULT</span></section>
+  <div class="result px fade"><div class="lab" style="font-family:var(--f-pixel);font-size:10px;color:var(--muted)">RANK</div><div class="rank">${rank}</div>
+  <div class="score" dir="ltr">${s} / ${n}</div>
+  <p>${p>=.75?"ممتاز! انت جاهز للمستوى ده.":p>=.5?"كويس، راجع الأسئلة اللي غلطت فيها تحت.":"محتاج تراجع الشرح تاني وتعيد الكويز."}</p>
+  <div class="cta" dir="ltr"><button class="btn" id="again">PLAY AGAIN</button><button class="btn b" id="rev">REVIEW ANSWERS</button><a class="btn o" href="${U(Z.back)}">BACK</a></div></div>`;
+  say(p>=.75?`جبت ${s} من ${n}. Rank ${rank}!`:`جبت ${s} من ${n}. راجع الشرح وجرب تاني.`,p>=.6?"happy":"sad");
+  document.getElementById("again").onclick=()=>viewQuiz(S.id);
+  document.getElementById("rev").onclick=()=>renderKey(true);
+}
+function keyList(Z,ans,withMine){return `${Z.qs.map((q,i)=>{const mine=ans[i];const wrong=withMine&&mine!==null&&mine!==q.a;
+    return `<div class="krow">${q.sec&&(i===0||Z.qs[i-1].sec!==q.sec)?`<div class="qsec">${q.sec}</div>`:""}<div class="q"><span class="n">${i+1}.</span>${q.q}</div>
+    ${wrong?`<div class="a x">${"ABCD"[mine]}) ${q.o[mine]}</div>`:""}
+    <div class="a">${"ABCD"[q.a]}) ${q.o[q.a]}</div><div class="ex">${q.e}</div></div>`}).join("")}`}
+function renderKey(withMine){
+  const {Z,ans}=S;
+  app.innerHTML=`<section class="page-head"><span class="eyebrow" dir="ltr">${Z.title} · ANSWER KEY</span><h1 dir="ltr" style="font-size:clamp(16px,3vw,22px)">${Z.ar}</h1>
+  <div class="cta" dir="ltr"><button class="btn" id="bk">${withMine?"RESULT":"BACK TO QUIZ"}</button></div></section>
+  <div class="key fade">${keyList(Z,ans,withMine)}</div>`;
+  window.scrollTo(0,0);
+  document.getElementById("bk").onclick=()=>{renderQuiz();window.scrollTo(0,0)};
+  say("دي كل الإجابات مع الشرح. ذاكرها كويس قبل الامتحان.","think");
+}
+
+/* ============ router ============ */
+function route(){
+  cancelAnimationFrame(walkRAF);
+  const h=STATIC?ROUTE_META.content:(location.hash||"#home").slice(1);
+  navEl.querySelectorAll("a").forEach(a=>{const on=a.dataset.h===h||(h.startsWith("quiz-")&&a.dataset.h==="lec-"+h.slice(5));a.classList.toggle("on",on)});
+  const lk=h.startsWith("lec-")?h.slice(4):null;
+  document.title=lk&&LECS[lk]?`${LECS[lk].title} | ${LECS[lk].ar} | MMD 307`:QUIZZES[h]?`${QUIZZES[h].title} | ${QUIZZES[h].ar} | MMD 307`:PAGE_TITLES.home;
+  if(h.startsWith("lec-")&&LECS[h.slice(4)])viewLesson(h.slice(4));
+  else if(QUIZZES[h])viewQuiz(h);
+  else viewHome();
+  const on=navEl.querySelector("a.on");if(on)on.scrollIntoView({inline:"nearest",block:"nearest"});
+}
+if(!STATIC)addEventListener("hashchange",route);
+if(STATIC)document.querySelector(".bar .logo").href="/";
+route();
+</script>
+<footer class="wrap" dir="ltr">MADE BY <a href="https://dev.uniskills.pro/" target="_blank" rel="noopener">AHMED SALMAN</a></footer>
+
+</body>
+</html>
