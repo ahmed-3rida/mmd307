@@ -18,14 +18,18 @@ Made by [Ahmed Salman](https://dev.uniskills.pro/).
 ```bash
 npm install
 npx playwright install chromium
-npm run build -- https://your-domain.com
+npm run build:site -- https://your-domain.com
 ```
 
 The domain argument is used for canonical URLs, Open Graph tags and the sitemap (default: `https://mmd307.uniskills.pro`).
 
 ## Deploy
 
-Deploy the `site/` folder to any static host (Vercel, Netlify, Cloudflare Pages, GitHub Pages).
-Set the output / publish directory to `site` with no build command, since the built files are committed.
+The built files in `site/` are committed, so hosts only need to serve that folder.
+
+- **Vercel:** works as-is through `vercel.json` (no install, no build, output `site`).
+- **Netlify / Cloudflare Pages:** set the publish directory to `site` and leave the build command empty.
+
+Run `npm run build:site` locally and commit `site/` whenever `src/index.html` changes.
 
 After deploying, add the domain to Google Search Console and submit `/sitemap.xml`.

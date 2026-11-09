@@ -5,7 +5,7 @@
   "description": "MMD 307 Multimedia Programming study site: lessons, practice quizzes and a mock midterm, pixel-art style.",
   "author": "Ahmed Salman (https://dev.uniskills.pro/)",
   "scripts": {
-    "build": "node tools/build.js",
+    "build:site": "node tools/build.js",
     "preview": "npx serve site"
   },
   "devDependencies": {
