@@ -1,7 +1,7 @@
 // Builds a self-hostable, SEO-ready static site into ../site
 // Usage: node tools/build.js https://your-domain.com
 const fs=require('fs'),path=require('path'),{chromium}=require('playwright');
-const SITE=(process.argv[2]||'https://mmd307.uniskills.pro').replace(/\/$/,'');
+const SITE=(process.argv[2]||'https://mmd307.vercel.app').replace(/\/$/,'');
 const ROOT=path.join(__dirname,'..'),OUT=path.join(ROOT,'site'),TMP=path.join(ROOT,'.build');
 const SRC=fs.readFileSync(path.join(ROOT,'src','index.html'),'utf8');
 const AUTHOR={name:'Ahmed Salman',url:'https://dev.uniskills.pro/'};

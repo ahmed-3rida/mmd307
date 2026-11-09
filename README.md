@@ -21,7 +21,7 @@ npx playwright install chromium
 npm run build:site -- https://your-domain.com
 ```
 
-The domain argument is used for canonical URLs, Open Graph tags and the sitemap (default: `https://mmd307.uniskills.pro`).
+The domain argument is used for canonical URLs, Open Graph tags and the sitemap (default: `https://mmd307.vercel.app`).
 
 ## Deploy
 
